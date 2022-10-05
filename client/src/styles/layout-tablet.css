@@ -1,0 +1,23 @@
+@media (min-width: 768px) {
+  /* General */
+  .page {
+    font-size: 1.8rem;
+  }
+
+  .highlighted-btn {
+    width: 15rem;
+  }
+
+  .highlighted-btn span {
+    font-size: 1.8rem;
+    margin-right: 10%;
+  }
+
+  /* Navigation */
+
+
+  /* Footer */
+  .footer {
+    padding: 3%;
+  }
+}

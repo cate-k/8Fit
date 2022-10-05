@@ -1,0 +1,72 @@
+/* General */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.highlighted-btn {
+  background-color: var(--colour-teal);
+  border: 1px solid var(--colour-teal);
+  color: var(--colour-white);
+  border-radius: 5px;
+  font-family: "Roboto Light";
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  width: 12rem;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-bottom: 5%;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.highlighted-btn span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.highlighted-btn span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.highlighted-btn:hover span {
+  padding-right: 25px;
+}
+
+.highlighted-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.metamask-logo {
+  height: 40px;
+  width: 40px;
+  margin-right: 1rem;
+}
+
+/* Navigation */
+
+
+/* Footer */
+.footer {
+  background-color: var(--colour-rich-black);
+  color: var(--colour-white);
+  padding: 5%;
+  margin-top: 5%;
+}
+
+.footer p {
+  text-align: center;
+}

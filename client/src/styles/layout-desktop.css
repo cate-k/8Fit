@@ -1,0 +1,15 @@
+@media (min-width: 1280px) {
+  /* General */
+  .page {
+    font-size: 1.5rem;
+  }
+
+  /* Navigation */
+
+
+  /* Footer */
+  .footer {
+    margin-top: 1%;
+    padding: 2%;
+  }
+}
