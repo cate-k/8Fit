@@ -14,7 +14,11 @@
   }
 
   /* Navigation */
-
+  .link-icon {
+    height: 30%;
+    width: 30%;
+    margin-top: 70%;
+  }
 
   /* Footer */
   .footer {

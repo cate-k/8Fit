@@ -5,5 +5,11 @@
   }
 
   /* Navigation */
+  .logo {
+    margin-top: 15%;
+  }
 
+  .link-icon {
+    margin-top: 30%;
+  }
 }

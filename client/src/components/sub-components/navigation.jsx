@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
-
-import Storage from "../../abi/Storage.json";
+import { useMoralis, useWeb3ExecuteFunction  } from "react-moralis";
+import Identicon from "react-hooks-identicons";
+import { Activity, Heart, Coffee, PlusSquare } from "react-feather";
 
 const Navigation = () => {
   const { authenticate, account } = useMoralis();
   const contractProcessor = useWeb3ExecuteFunction();
 
-  const [profilePic, setProfilePic] = useState("");
+  const [displayName, setDisplayName] = useState("You");
 
   useEffect(() => {
     const init = async () => {
@@ -20,16 +20,16 @@ const Navigation = () => {
       // Fetch the user's profile picture
       let options = {
         contractAddress: Storage.address,
-        functionName: "getProfilePic",
+        functionName: "getDisplayName",
         abi: Storage.abi,
         params: { userAddress: account },
       };
 
       await contractProcessor.fetch({
         params: options,
-        onSuccess: (userProfilePic) => {
-          if (userProfilePic !== "") {
-            setProfilePic(userProfilePic);
+        onSuccess: (userDisplayName) => {
+          if (userDisplayName !== "") {
+            setDisplayName(userDisplayName);
           }
         },
       });
@@ -44,23 +44,41 @@ const Navigation = () => {
         <Link to="/home">
           <img
             className="logo"
-            src={require("../../styles/images/logo.jpg").default}
+            src={require("../../styles/images/logo.png")}
             alt="8Fit"
           />
         </Link>
       </div>
 
       <div className="nav-links">
+        <Link className="link" to="/dashboard">
+          <Activity className="link-icon" />
+          <h3>Dashboard</h3>
+        </Link>
+
+        <Link className="link" to="/fitness">
+          <Heart className="link-icon" />
+          <h3>Fitness</h3>
+        </Link>
+
+        <Link className="link" to="/nutrition">
+          <Coffee className="link-icon" />
+          <h3>Nutrition</h3>
+        </Link>
+
+        <Link className="link" to="/wellbeing">
+          <PlusSquare className="link-icon" />
+          <h3>Wellbeing</h3>
+        </Link>
+
         <Link
+          className="link"
           to={{
             pathname: "/profile/" + account
           }}
         >
-          <img
-            className="profile-pic"
-            src={profilePic === "" ? require("../../styles/images/user.png").default : profilePic}
-            alt="Profile"
-          />
+          <Identicon className="avatar" string={account} size={45} />
+          <h3>{displayName}</h3>
         </Link>
       </div>
     </div>
