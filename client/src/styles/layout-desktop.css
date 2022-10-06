@@ -34,4 +34,27 @@
     margin-top: 1%;
     padding: 2%;
   }
+
+  /* Home */
+  .home-logo {
+    height: 20%;
+    width: 20%;
+  }
+
+  /* Profile */
+  .profile-heading {
+    margin-top: 3%;
+  }
+
+  .profile-text-input input {
+    font-size: 1.5rem;
+    height: 2rem;
+    margin-top: 1%;
+  }
+
+  .save-icon {
+    height: 2%;
+    width: 2%;
+    margin-left: 1%;
+  }
 }

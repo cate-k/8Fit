@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import Footer from "./sub-components/footer";
 
 const Home = () => {
+  // Set the page's title
+  document.title = "Home | 8Fit - Track your health and fitness journey";
+
   return (
     <div className="page">
       <div className="content home">
@@ -15,7 +18,7 @@ const Home = () => {
 
         <p>8Fit is a platform that enables users to track their health, fitness, and wellness progress.</p>
 
-        <Link to="/dashboard">
+        <Link to="/profile">
           <button className="highlighted-btn">
             <img
               className="metamask-logo"

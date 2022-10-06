@@ -4,6 +4,8 @@ import { useMoralis, useWeb3ExecuteFunction  } from "react-moralis";
 import Identicon from "react-hooks-identicons";
 import { Activity, Heart, Coffee, PlusSquare } from "react-feather";
 
+import Storage from "../../abi/Storage";
+
 const Navigation = () => {
   const { authenticate, account } = useMoralis();
   const contractProcessor = useWeb3ExecuteFunction();
@@ -17,7 +19,7 @@ const Navigation = () => {
         authenticate({ signingMessage: "Authenticate using MetaMask to continue using 8Fit" });
       }
 
-      // Fetch the user's profile picture
+      // Fetch the user's display name
       let options = {
         contractAddress: Storage.address,
         functionName: "getDisplayName",
@@ -71,12 +73,7 @@ const Navigation = () => {
           <h3>Wellbeing</h3>
         </Link>
 
-        <Link
-          className="link"
-          to={{
-            pathname: "/profile/" + account
-          }}
-        >
+        <Link className="link" to="/profile">
           <Identicon className="avatar" string={account} size={45} />
           <h3>{displayName}</h3>
         </Link>

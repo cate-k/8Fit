@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import Navigation from "./sub-components/navigation";
 
 const Dashboard = () => {
+  // Set the page's title
+  document.title = "Dashboard | 8Fit - Track your health and fitness journey";
+
   return (
     <div className="page">
       <Navigation />

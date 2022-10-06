@@ -24,7 +24,7 @@ root.render(
         <Route path="/fitness" render={(props) => <Fitness {...props} />} />
         <Route path="/nutrition" render={(props) => <Nutrition {...props} />} />
         <Route path="/wellbeing" render={(props) => <Wellbeing {...props} />} />
-        <Route path="/profile/:user" render={(props) => <Profile {...props} />} />
+        <Route path="/profile" render={(props) => <Profile {...props} />} />
 
         <Redirect to="/home" />
       </Switch>

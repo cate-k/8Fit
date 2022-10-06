@@ -8,6 +8,7 @@
 
 .content {
   margin-left: 20%;
+  margin-bottom: 5%;
   flex-grow: 1;
 }
 
@@ -127,4 +128,39 @@
 .home-logo {
   height: 80%;
   width: 80%;
+}
+
+/* Profile */
+.profile-heading {
+  font-weight: bold;
+  margin: 0;
+  margin-top: 10%;
+}
+
+.profile-text-input {
+  margin: 0;
+}
+
+.profile-text-input input {
+  font-family: "Roboto Light";
+  font-size: 1.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--colour-rich-black);
+  margin-top: 3%;
+  outline: 0;
+}
+
+.profile-text-input input:focus {
+  border-bottom: 1px solid var(--colour-teal);
+  transition: all 0.5s;
+}
+
+.save-icon {
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+.save-icon:hover {
+  color: var(--colour-teal);
+  transition: all 0.5s;
 }

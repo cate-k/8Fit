@@ -24,4 +24,21 @@
   .footer {
     padding: 3%;
   }
+
+  /* Home */
+  .home-logo {
+    height: 50%;
+    width: 50%;
+  }
+
+  /* Profile */
+  .profile-text-input input {
+    font-size: 1.8rem;
+  }
+
+  .save-icon {
+    height: 5%;
+    width: 5%;
+    margin-left: 2%;
+  }
 }
