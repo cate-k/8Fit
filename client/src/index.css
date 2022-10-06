@@ -17,6 +17,7 @@
 /* Colours */
 :root {
   --colour-rich-black: #0C0C0C;
+  --colour-lilac-bush: #A87CD4;
   --colour-blue-green: #53DFD1;
   --colour-teal: #59D7EE;
   --colour-tiffany-blue: #9DE3F6;
@@ -41,6 +42,10 @@ h1, h2, h3 {
   color: var(--colour-blue-green);
   font-family: "Oswald";
   letter-spacing: 0.2rem;
+}
+
+h1 {
+  color: var(--colour-lilac-bush);
 }
 
 p {
