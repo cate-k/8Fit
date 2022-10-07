@@ -1,0 +1,63 @@
+@import url("styles/layout-mobile");
+@import url("styles/layout-tablet");
+@import url("styles/layout-tablet-large");
+@import url("styles/layout-desktop");
+
+/* Fonts */
+@font-face {
+  font-family: "Oswald";
+  src: url("./styles/fonts/oswald.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto Light";
+  src: url("./styles/fonts/roboto-light.ttf") format("truetype");
+}
+
+/* Colours */
+:root {
+  --colour-rich-black: #0C0C0C;
+  --colour-lilac-bush: #A87CD4;
+  --colour-blue-green: #53DFD1;
+  --colour-teal: #59D7EE;
+  --colour-tiffany-blue: #9DE3F6;
+  --colour-baby-blue: #D3F4FB;
+  --colour-white: #FFFFFF;
+}
+
+/* General settings */
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Light";
+}
+
+h1, h2, h3 {
+  color: var(--colour-blue-green);
+  font-family: "Oswald";
+  letter-spacing: 0.2rem;
+}
+
+h1 {
+  color: var(--colour-lilac-bush);
+}
+
+p {
+  font-family: "Roboto Light";
+}
+
+a {
+  color: var(--colour-teal);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--colour-tiffany-blue);
+  transition: 0.3s;
+}

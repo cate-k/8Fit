@@ -1,0 +1,166 @@
+/* General */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+
+.content {
+  margin-left: 20%;
+  margin-bottom: 5%;
+  flex-grow: 1;
+}
+
+.highlighted-btn {
+  background-color: var(--colour-teal);
+  border: 1px solid var(--colour-teal);
+  color: var(--colour-white);
+  border-radius: 5px;
+  font-family: "Roboto Light";
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  width: 12rem;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.highlighted-btn span {
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.highlighted-btn span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.highlighted-btn:hover span {
+  padding-right: 25px;
+}
+
+.highlighted-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.metamask-logo {
+  height: 40px;
+  width: 40px;
+  margin-right: 1rem;
+}
+
+/* Navigation */
+.navigation {
+  background-color: var(--colour-white);
+  border-right: 1px solid var(--colour-teal);
+  height: 100%;
+  width: 18%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+.logo {
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin: auto;
+  margin-top: 30%;
+}
+
+.nav-links {
+  margin-top: 5%;
+}
+
+.nav-links h3 {
+  display: none;
+}
+
+.link {
+  display: flex;
+}
+
+.link:last-child {
+  margin-top: 70%;
+}
+
+.link-icon {
+  height: 50%;
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-top: 80%;
+}
+
+.avatar {
+  border-radius: 25px;
+  display: block;
+  margin: auto;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--colour-rich-black);
+  color: var(--colour-white);
+  padding: 5%;
+  margin-top: 5%;
+}
+
+.footer p {
+  text-align: center;
+}
+
+/* Home */
+.content.home {
+  margin-left: 0;
+}
+
+.home-logo {
+  height: 80%;
+  width: 80%;
+}
+
+/* Profile */
+.profile-heading {
+  font-weight: bold;
+  margin: 0;
+  margin-top: 10%;
+}
+
+.profile-text-input {
+  margin: 0;
+}
+
+.profile-text-input input {
+  font-family: "Roboto Light";
+  font-size: 1.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--colour-rich-black);
+  margin-top: 3%;
+  outline: 0;
+}
+
+.profile-text-input input:focus {
+  border-bottom: 1px solid var(--colour-teal);
+  transition: all 0.5s;
+}
+
+.save-icon {
+  margin-left: 5%;
+  cursor: pointer;
+}
+
+.save-icon:hover {
+  color: var(--colour-teal);
+  transition: all 0.5s;
+}

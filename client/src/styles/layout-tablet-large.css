@@ -1,0 +1,21 @@
+@media (min-width: 1024px) {
+  /* General */
+  .highlighted-btn span {
+    font-size: 1.5rem;
+  }
+
+  /* Navigation */
+  .logo {
+    margin-top: 15%;
+  }
+
+  .link-icon {
+    margin-top: 30%;
+  }
+
+  /* Home */
+  .home-logo {
+    height: 30%;
+    width: 30%;
+  }
+}
