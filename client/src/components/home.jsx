@@ -10,13 +10,18 @@ const Home = () => {
   return (
     <div className="page">
       <div className="content home">
-        <img
-          className="home-logo"
-          src={require("../styles/images/logo.png")}
-          alt="8Fit"
-        />
+        <div className="home-logo-container">
+          <img
+            className="home-logo"
+            src={require("../styles/images/logo-white.png")}
+            alt="8Fit"
+          />
+        </div>
 
-        <p>8Fit is a platform that enables users to track their health, fitness, and wellness progress.</p>
+        {/* <p>
+          8Fit is a platform that enables users to track their health, fitness,
+          and wellness progress.
+        </p> */}
 
         <Link to="/profile">
           <button className="highlighted-btn">
@@ -33,6 +38,6 @@ const Home = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default Home;

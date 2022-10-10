@@ -22,13 +22,12 @@
 
   /* Footer */
   .footer {
-    padding: 3%;
+    padding: 0%;
   }
 
   /* Home */
-  .home-logo {
-    height: 50%;
-    width: 50%;
+  .home-logo-container {
+    padding-bottom: 5%;
   }
 
   /* Profile */
