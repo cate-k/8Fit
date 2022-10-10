@@ -16,13 +16,14 @@
 
 /* Colours */
 :root {
-  --colour-rich-black: #0C0C0C;
-  --colour-lilac-bush: #A87CD4;
-  --colour-blue-green: #53DFD1;
-  --colour-teal: #59D7EE;
-  --colour-tiffany-blue: #9DE3F6;
-  --colour-baby-blue: #D3F4FB;
-  --colour-white: #FFFFFF;
+  --colour-rich-black: #0c0c0c;
+  --colour-lilac-bush: #a87cd4;
+  --colour-blue-green: #53dfd1;
+  --colour-teal: #59d7ee;
+  --colour-tiffany-blue: #9de3f6;
+  --colour-baby-blue: #d3f4fb;
+  --colour-white: #ffffff;
+  --colour-medium-blue: #2879f1;
 }
 
 /* General settings */
@@ -38,7 +39,9 @@ body {
   font-family: "Roboto Light";
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--colour-blue-green);
   font-family: "Oswald";
   letter-spacing: 0.2rem;
