@@ -7,6 +7,9 @@ import "./index.css";
 import Home from "./components/home";
 import Dashboard from "./components/dashboard";
 import Fitness from "./components/fitness";
+import Steps from "./components/steps";
+import Cardio from "./components/cardio";
+import StrengthTraining from "./components/strength-training";
 import Nutrition from "./components/nutrition";
 import Wellbeing from "./components/wellbeing";
 import Profile from "./components/profile";
@@ -22,6 +25,9 @@ root.render(
         <Route path="/home" render={(props) => <Home {...props} />} />
         <Route path="/dashboard" render={(props) => <Dashboard {...props} />} />
         <Route path="/fitness" render={(props) => <Fitness {...props} />} />
+        <Route path="/steps" render={(props) => <Steps {...props} />} />
+        <Route path="/cardio" render={(props) => <Cardio {...props} />} />
+        <Route path="/strength-training" render={(props) => <StrengthTraining {...props} />} />
         <Route path="/nutrition" render={(props) => <Nutrition {...props} />} />
         <Route path="/wellbeing" render={(props) => <Wellbeing {...props} />} />
         <Route path="/profile" render={(props) => <Profile {...props} />} />
