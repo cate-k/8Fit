@@ -198,7 +198,7 @@ const Cardio = () => {
     }
   };
 
-  // Check if the user has clicked on the edit fitness details button
+  // Check if the user has clicked on the edit details button
   if (toggleEdit === true) {
     return (
       <div className="page">
