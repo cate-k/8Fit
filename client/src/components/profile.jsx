@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BigNumber } from "ethers";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 import { Check } from "react-feather";
 
@@ -11,9 +12,10 @@ const Profile = () => {
 
   const [displayName, setDisplayName] = useState("You");
   const [age, setAge] = useState(0);
-  const [gender, setGender] = useState("Enter your gender");
+  const [gender, setGender] = useState("No gender entered");
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
+  const [toggleEdit, setToggleEdit] = useState(false);
 
   // Set the page's title
   document.title = displayName + " | 8Fit - Track your health and fitness journey";
@@ -109,6 +111,14 @@ const Profile = () => {
     init();
   }, [account]);
 
+  const editProfileDetails = () => {
+    setToggleEdit(true);
+  }
+
+  const exitEditProfileDetails = () => {
+    setToggleEdit(false);
+  }
+
   const saveDisplayName = async () => {
     // Prevent the user from going under or over the character limit for the display name
     if (document.getElementById("displayName").value.length > 0 && document.getElementById("displayName").value.length <= 30) {
@@ -157,7 +167,7 @@ const Profile = () => {
           }
         },
       });
-    } else if (document.getElementById("age").value === 0) {
+    } else if (document.getElementById("age").value.length === 0) {
       alert("Age cannot be left empty.");
     }
   };
@@ -207,7 +217,7 @@ const Profile = () => {
           }
         },
       });
-    } else if (document.getElementById("height").value === 0) {
+    } else if (document.getElementById("height").value.length === 0) {
       alert("Height cannot be left empty.");
     }
   };
@@ -232,70 +242,102 @@ const Profile = () => {
           }
         },
       });
-    } else if (document.getElementById("weight").value === 0) {
+    } else if (document.getElementById("weight").value.length === 0) {
       alert("Weight cannot be left empty.");
     }
   };
 
-  return (
-    <div className="page profile">
-      <Navigation />
+  // Check if the user has clicked on the edit profile details button
+  if (toggleEdit === true) {
+    return (
+      <div className="page profile">
+        <Navigation />
 
-      <div className="content">
-        <h1>Profile</h1>
+        <div className="content">
+          <h1>Profile</h1>
 
-        <p className="profile-heading">Display Name</p>
-        <p className="profile-text-input">
-          <input
-            id="displayName"
-            type="text"
-            placeholder={displayName}
-          />
-          <Check className="save-icon" onClick={saveDisplayName} />
-        </p>
+          <p className="profile-heading">Display Name</p>
+          <p className="profile-text-input">
+            <input
+              id="displayName"
+              type="text"
+              placeholder={displayName}
+            />
+            <Check className="save-icon" onClick={saveDisplayName} />
+          </p>
 
-        <p className="profile-heading">Age</p>
-        <p className="profile-text-input">
-          <input
-            id="age"
-            type="number"
-            placeholder={age}
-          />
-          <Check className="save-icon" onClick={saveAge} />
-        </p>
+          <p className="profile-heading">Age</p>
+          <p className="profile-text-input">
+            <input
+              id="age"
+              type="number"
+              placeholder={age}
+            />
+            <Check className="save-icon" onClick={saveAge} />
+          </p>
 
-        <p className="profile-heading">Gender</p>
-        <p className="profile-text-input">
-          <input
-            id="gender"
-            type="text"
-            placeholder={gender}
-          />
-          <Check className="save-icon" onClick={saveGender} />
-        </p>
+          <p className="profile-heading">Gender</p>
+          <p className="profile-text-input">
+            <input
+              id="gender"
+              type="text"
+              placeholder="Enter your gender"
+            />
+            <Check className="save-icon" onClick={saveGender} />
+          </p>
 
-        <p className="profile-heading">Height (in cm)</p>
-        <p className="profile-text-input">
-          <input
-            id="height"
-            type="number"
-            placeholder={height}
-          />
-          <Check className="save-icon" onClick={saveHeight} />
-        </p>
+          <p className="profile-heading">Height (in cm)</p>
+          <p className="profile-text-input">
+            <input
+              id="height"
+              type="number"
+              placeholder={height}
+            />
+            <Check className="save-icon" onClick={saveHeight} />
+          </p>
 
-        <p className="profile-heading">Weight (in kg)</p>
-        <p className="profile-text-input">
-          <input
-            id="weight"
-            type="number"
-            placeholder={weight}
-          />
-          <Check className="save-icon" onClick={saveWeight} />
-        </p>
+          <p className="profile-heading">Weight (in kg)</p>
+          <p className="profile-text-input last">
+            <input
+              id="weight"
+              type="number"
+              placeholder={weight}
+            />
+            <Check className="save-icon" onClick={saveWeight} />
+          </p>
+
+          <button className="edit-btn" onClick={exitEditProfileDetails}>Exit</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="page profile">
+        <Navigation />
+
+        <div className="content">
+          <h1>Profile</h1>
+
+          <p className="profile-heading">Display Name</p>
+          <p>{displayName}</p>
+
+          <p className="profile-heading">Age</p>
+          <p>{parseInt(BigNumber.from(age).toHexString())}</p>
+
+          <p className="profile-heading">Gender</p>
+          <p>{gender}</p>
+
+          <p className="profile-heading">Height (in cm)</p>
+          <p>{parseInt(BigNumber.from(height).toHexString())}</p>
+
+          <p className="profile-heading">Weight (in kg)</p>
+          <p>{parseInt(BigNumber.from(weight).toHexString())}</p>
+
+          <button className="edit-btn" onClick={editProfileDetails}>Edit Profile Details</button>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Profile;

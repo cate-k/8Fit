@@ -40,4 +40,8 @@
     width: 5%;
     margin-left: 2%;
   }
+
+  .edit-btn {
+    font-size: 1.8rem;
+  }
 }

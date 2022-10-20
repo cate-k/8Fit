@@ -1,40 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { BigNumber } from "ethers";
-import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import Navigation from "./sub-components/navigation";
 
 const Fitness = () => {
-  const { account } = useMoralis();
-  const contractProcessor = useWeb3ExecuteFunction();
-
-  const [dailyStepGoal, setDailyStepGoal] = useState(0);
-
   // Set the page's title
   document.title = "Fitness | 8Fit - Track your health and fitness journey";
-
-  useEffect(() => {
-    const init = async () => {
-      // Fetch the user's daily step goal
-      let options = {
-        contractAddress: Storage.address,
-        functionName: "getDailyStepGoal",
-        abi: Storage.abi,
-        params: { userAddress: account },
-      };
-
-      await contractProcessor.fetch({
-        params: options,
-        onSuccess: async (dailyStepGoal) => {
-          if (dailyStepGoal !== "") {
-            setDailyStepGoal(parseInt(BigNumber.from(dailyStepGoal).toHexString()));
-          }
-        },
-      });
-    };
-
-    init();
-  }, [account]);
 
   return (
     <div className="page">
@@ -43,9 +14,24 @@ const Fitness = () => {
       <div className="content">
         <h1>Fitness</h1>
 
-        <div className="steps-goal">
-          <h2>Daily Steps Goal</h2>
-          {dailyStepGoal}
+        <div className="fitness-links">
+          <Link to="/steps">
+            <button className="highlighted-btn">
+              <span>Steps</span>
+            </button>
+          </Link>
+
+          <Link to="/cardio">
+            <button className="highlighted-btn">
+              <span>Cardio</span>
+            </button>
+          </Link>
+
+          <Link to="/strength-training">
+            <button className="highlighted-btn">
+              <span>Strength Training</span>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

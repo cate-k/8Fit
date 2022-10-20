@@ -23,7 +23,6 @@
   --colour-tiffany-blue: #9de3f6;
   --colour-baby-blue: #d3f4fb;
   --colour-white: #ffffff;
-  --colour-medium-blue: #2879f1;
 }
 
 /* General settings */
@@ -42,13 +41,9 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--colour-blue-green);
+  color: var(--colour-lilac-bush);
   font-family: "Oswald";
   letter-spacing: 0.2rem;
-}
-
-h1 {
-  color: var(--colour-lilac-bush);
 }
 
 p {
