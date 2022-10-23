@@ -23,6 +23,7 @@
   --colour-tiffany-blue: #9de3f6;
   --colour-baby-blue: #d3f4fb;
   --colour-white: #ffffff;
+  --colour-blue-gray: #46769b;
 }
 
 /* General settings */
@@ -38,12 +39,26 @@ body {
   font-family: "Roboto Light";
 }
 
-h1,
-h2,
-h3 {
+h1 {
   color: var(--colour-lilac-bush);
   font-family: "Oswald";
   letter-spacing: 0.2rem;
+}
+
+h2 {
+  text-align: center;
+  color: var(--colour-lilac-bush);
+  font-family: "Oswald";
+  font-weight: lighter;
+  letter-spacing: 0.1rem;
+}
+
+h3 {
+  text-align: center;
+  color: var(--colour-white);
+  font-family: "Oswald";
+  font-weight: lighter;
+  letter-spacing: 0.1rem;
 }
 
 p {

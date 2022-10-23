@@ -198,6 +198,7 @@
   font-size: 1.2rem;
   color: var(--colour-white);
   background-color: var(--colour-blue-green);
+  min-width: 150px;
   border: 0;
   border-radius: 10px;
   margin-top: 5%;
@@ -215,4 +216,161 @@
 /* Fitness */
 .delete-icon {
   cursor: pointer;
+}
+
+.fitness-content {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fitness-links {
+  margin: 1%;
+  padding: 5%;
+}
+
+.fitness-text-input input {
+  width: 60%;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 2rem;
+  color: var(--colour-teal);
+  border: 0;
+  border-bottom: 2px solid var(--colour-teal);
+}
+
+/* Steps*/
+
+.steps-goal {
+  width: 60%;
+  max-width: 250px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: lighter;
+  border-radius: 20px;
+  background-color: var(--colour-blue-gray);
+  padding: 2%;
+  margin: 2%;
+}
+
+.steps-data {
+  text-align: center;
+  font-family: "Roboto Light";
+  color: var(--colour-blue-green);
+  font-size: 3rem;
+  font-weight: 2rem;
+}
+
+.steps-taken input {
+  text-align: center;
+  margin-bottom: 2%;
+  width: 60%;
+  color: var(--colour-blue-green);
+  font-size: 3rem;
+  font-weight: 2rem;
+  border: 2px solid var(--colour-teal);
+  border-radius: 20px;
+}
+
+.edit-steps-btn {
+  font-family: "Roboto Light";
+  font-size: 1.2rem;
+  color: var(--colour-white);
+  background-color: var(--colour-blue-green);
+  border: 0;
+  border-radius: 10px;
+  margin-top: 5%;
+  padding: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  cursor: pointer;
+}
+
+.steps-posts {
+  border: 1px;
+  border-radius: 10px;
+  background-color: var(--colour-blue-green);
+}
+
+/* cardio*/
+
+.cardio-submit-btn {
+  font-family: "Roboto Light";
+  font-size: 1.2rem;
+  color: var(--colour-white);
+  background-color: var(--colour-blue-green);
+  border: 0;
+  border-radius: 10px;
+  margin-top: 5%;
+  padding: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  cursor: pointer;
+}
+.cardio-goal {
+  width: 60%;
+  max-width: 250px;
+  text-align: center;
+  display: inline-block;
+  font-weight: lighter;
+  background-color: var(--colour-blue-gray);
+  border-radius: 20px;
+  padding: 2%;
+  margin: 2%;
+}
+
+.cardio-data {
+  text-align: center;
+  font-family: "Roboto Light";
+  color: var(--colour-blue-green);
+  font-size: 2rem;
+  font-weight: 2rem;
+}
+
+.cardio-posts {
+  border: 1px;
+  border-radius: 10px;
+  background-color: var(--colour-blue-green);
+}
+/*strength*/
+
+.strength-training-goal {
+  width: 60%;
+  max-width: 250px;
+  text-align: center;
+  display: inline-block;
+  font-weight: lighter;
+  background-color: var(--colour-blue-gray);
+  border-radius: 20px;
+  padding: 2%;
+  margin: 2%;
+}
+
+.strength-training-submit-btn {
+  font-family: "Roboto Light";
+  font-size: 1.2rem;
+  color: var(--colour-white);
+  background-color: var(--colour-blue-green);
+  border: 0;
+  border-radius: 10px;
+  margin-top: 5%;
+  padding: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  cursor: pointer;
+}
+
+.strength-training-data {
+  text-align: center;
+  font-family: "Roboto Light";
+  color: var(--colour-blue-green);
+  font-size: 2rem;
+  font-weight: 2rem;
+}
+
+.strength-training-posts {
+  border: 1px;
+  border-radius: 10px;
+  background-color: var(--colour-blue-green);
 }

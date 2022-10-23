@@ -34,7 +34,9 @@ const Fitness = () => {
         params: options,
         onSuccess: async (dailyStepGoal) => {
           if (dailyStepGoal !== "") {
-            setDailyStepGoal(parseInt(BigNumber.from(dailyStepGoal).toHexString()));
+            setDailyStepGoal(
+              parseInt(BigNumber.from(dailyStepGoal).toHexString())
+            );
           }
         },
       });
@@ -51,7 +53,9 @@ const Fitness = () => {
         params: options,
         onSuccess: async (weeklyStepGoal) => {
           if (weeklyStepGoal !== "") {
-            setWeeklyStepGoal(parseInt(BigNumber.from(weeklyStepGoal).toHexString()));
+            setWeeklyStepGoal(
+              parseInt(BigNumber.from(weeklyStepGoal).toHexString())
+            );
           }
         },
       });
@@ -66,7 +70,11 @@ const Fitness = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalStepsPostsCreated) => {
-          for (let stepsPostsIndex = 0; stepsPostsIndex < totalStepsPostsCreated; stepsPostsIndex++) {
+          for (
+            let stepsPostsIndex = 0;
+            stepsPostsIndex < totalStepsPostsCreated;
+            stepsPostsIndex++
+          ) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getStepsPost",
@@ -78,7 +86,9 @@ const Fitness = () => {
               params: options,
               onSuccess: (stepsPost) => {
                 // Display the user's previous logs of steps taken
-                if (stepsPost.userAddress.toLowerCase() === account.toLowerCase()) {
+                if (
+                  stepsPost.userAddress.toLowerCase() === account.toLowerCase()
+                ) {
                   setStepsPosts(
                     <StepsPost
                       key={stepsPosts.length}
@@ -89,7 +99,7 @@ const Fitness = () => {
                     />
                   );
                 }
-              }
+              },
             });
           }
         },
@@ -101,11 +111,11 @@ const Fitness = () => {
 
   const editDetails = () => {
     setToggleEdit(true);
-  }
+  };
 
   const exitEditDetails = () => {
     setToggleEdit(false);
-  }
+  };
 
   const saveDailyStepsGoal = async () => {
     if (document.getElementById("dailyStepsGoal").value > 0) {
@@ -115,10 +125,10 @@ const Fitness = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newDailyStepGoal: document.getElementById("dailyStepsGoal").value
+          newDailyStepGoal: document.getElementById("dailyStepsGoal").value,
         },
       };
-      
+
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (dailyStepsGoal) => {
@@ -140,10 +150,10 @@ const Fitness = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newWeeklyStepGoal: document.getElementById("weeklyStepsGoal").value
+          newWeeklyStepGoal: document.getElementById("weeklyStepsGoal").value,
         },
       };
-      
+
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (weeklyStepsGoal) => {
@@ -160,7 +170,7 @@ const Fitness = () => {
   const postStepsTaken = async () => {
     if (document.getElementById("stepsTaken").value > 0) {
       // Initialise the date
-      const date = (new Date()).getTime();
+      const date = new Date().getTime();
 
       let options = {
         contractAddress: EightFit.address,
@@ -169,10 +179,10 @@ const Fitness = () => {
         params: {
           userAddress: account,
           stepsTakenToday: document.getElementById("stepsTaken").value,
-          date: date
+          date: date,
         },
       };
-      
+
       await contractProcessor.fetch({
         params: options,
         onSuccess: async () => {
@@ -194,45 +204,35 @@ const Fitness = () => {
           <h1>Fitness</h1>
 
           <h2>Steps</h2>
+          <div className="fitness-content">
+            <div className="steps-goal">
+              <h3>Daily Steps Goal</h3>
+              <p className="fitness-text-input">
+                <input id="dailyStepsGoal" type="number" placeholder="0" />
+                <Check className="save-icon" onClick={saveDailyStepsGoal} />
+              </p>
+            </div>
 
-          <div className="steps-goal">
-            <h3>Daily Steps Goal</h3>
-            <p className="fitness-text-input">
-              <input
-                id="dailyStepsGoal"
-                type="number"
-                placeholder="0"
-              />
-              <Check className="save-icon" onClick={saveDailyStepsGoal} />
-            </p>
-          </div>
+            <div className="steps-goal">
+              <h3>Weekly Steps Goal</h3>
+              <p className="fitness-text-input">
+                <input id="weeklyStepsGoal" type="number" placeholder="0" />
+                <Check className="save-icon" onClick={saveWeeklyStepsGoal} />
+              </p>
+            </div>
+            <div>
+              <button className="edit-btn" onClick={exitEditDetails}>
+                Exit
+              </button>
+            </div>
 
-          <div className="steps-goal">
-            <h3>Weekly Steps Goal</h3>
-            <p className="fitness-text-input">
-              <input
-                id="weeklyStepsGoal"
-                type="number"
-                placeholder="0"
-              />
-              <Check className="save-icon" onClick={saveWeeklyStepsGoal} />
-            </p>
-          </div>
+            <div className="steps-taken">
+              <h2>Steps Taken Today</h2>
+              <input id="stepsTaken" type="number" placeholder="0" />
+              <Check className="save-icon" onClick={postStepsTaken} />
+            </div>
 
-          <button className="edit-btn" onClick={exitEditDetails}>Exit</button>
-
-          <div className="steps-taken">
-            <h3>Steps Taken Today</h3>
-            <input
-              id="stepsTaken"
-              type="number"
-              placeholder="0"
-            />
-            <Check className="save-icon" onClick={postStepsTaken} />
-          </div>
-
-          <div className="steps-posts">
-            {stepsPosts}
+            <div className="steps-posts">{stepsPosts}</div>
           </div>
         </div>
       </div>
@@ -246,36 +246,35 @@ const Fitness = () => {
           <h1>Fitness</h1>
 
           <h2>Steps</h2>
+          <div className="fitness-content">
+            <div className="steps-goal">
+              <h3>Daily Steps Goal</h3>
+              <div className="steps-data">{dailyStepGoal}</div>
+            </div>
 
-          <div className="steps-goal">
-            <h3>Daily Steps Goal</h3>
-            {dailyStepGoal}
-          </div>
+            <div className="steps-goal">
+              <h3>Weekly Steps Goal</h3>
+              <div className="steps-data">{weeklyStepGoal}</div>
+            </div>
 
-          <div className="steps-goal">
-            <h3>Weekly Steps Goal</h3>
-            {weeklyStepGoal}
-          </div>
+            <div>
+              <button className="edit-btn" onClick={editDetails}>
+                Edit Goals
+              </button>
+            </div>
 
-          <button className="edit-btn" onClick={editDetails}>Edit Goals</button>
+            <div className="steps-taken">
+              <h2>Steps Taken Today</h2>
+              <input id="stepsTaken" type="number" placeholder="0" />
+              <Check className="save-icon" onClick={postStepsTaken} />
+            </div>
 
-          <div className="steps-taken">
-            <h3>Steps Taken Today</h3>
-            <input
-              id="stepsTaken"
-              type="number"
-              placeholder="0"
-            />
-            <Check className="save-icon" onClick={postStepsTaken} />
-          </div>
-
-          <div className="steps-posts">
-            {stepsPosts}
+            <div className="steps-posts">{stepsPosts}</div>
           </div>
         </div>
       </div>
     );
   }
-}
+};
 
 export default Fitness;

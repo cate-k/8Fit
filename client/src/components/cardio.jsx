@@ -34,7 +34,9 @@ const Cardio = () => {
         params: options,
         onSuccess: async (dailyCardioGoal) => {
           if (dailyCardioGoal !== "") {
-            setDailyCardioGoal(parseInt(BigNumber.from(dailyCardioGoal).toHexString()));
+            setDailyCardioGoal(
+              parseInt(BigNumber.from(dailyCardioGoal).toHexString())
+            );
           }
         },
       });
@@ -51,7 +53,9 @@ const Cardio = () => {
         params: options,
         onSuccess: async (weeklyCardioGoal) => {
           if (weeklyCardioGoal !== "") {
-            setWeeklyCardioGoal(parseInt(BigNumber.from(weeklyCardioGoal).toHexString()));
+            setWeeklyCardioGoal(
+              parseInt(BigNumber.from(weeklyCardioGoal).toHexString())
+            );
           }
         },
       });
@@ -66,7 +70,11 @@ const Cardio = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalCardioPostsCreated) => {
-          for (let cardioPostsIndex = 0; cardioPostsIndex < totalCardioPostsCreated; cardioPostsIndex++) {
+          for (
+            let cardioPostsIndex = 0;
+            cardioPostsIndex < totalCardioPostsCreated;
+            cardioPostsIndex++
+          ) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getCardioPost",
@@ -78,7 +86,9 @@ const Cardio = () => {
               params: options,
               onSuccess: (cardioPost) => {
                 // Display the user's previous logs of cardio activities
-                if (cardioPost.userAddress.toLowerCase() === account.toLowerCase()) {
+                if (
+                  cardioPost.userAddress.toLowerCase() === account.toLowerCase()
+                ) {
                   setCardioPosts(
                     <CardioPost
                       key={cardioPosts.length}
@@ -92,7 +102,7 @@ const Cardio = () => {
                     />
                   );
                 }
-              }
+              },
             });
           }
         },
@@ -104,11 +114,11 @@ const Cardio = () => {
 
   const editDetails = () => {
     setToggleEdit(true);
-  }
+  };
 
   const exitEditDetails = () => {
     setToggleEdit(false);
-  }
+  };
 
   const saveDailyCardioGoal = async () => {
     if (document.getElementById("dailyCardioGoal").value > 0) {
@@ -118,10 +128,10 @@ const Cardio = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newDailyCardioGoal: document.getElementById("dailyCardioGoal").value
+          newDailyCardioGoal: document.getElementById("dailyCardioGoal").value,
         },
       };
-      
+
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (dailyCardioGoal) => {
@@ -143,10 +153,11 @@ const Cardio = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newWeeklyCardioGoal: document.getElementById("weeklyCardioGoal").value
+          newWeeklyCardioGoal:
+            document.getElementById("weeklyCardioGoal").value,
         },
       };
-      
+
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (weeklyCardioGoal) => {
@@ -165,7 +176,7 @@ const Cardio = () => {
       if (document.getElementById("cardioMinutesCompleted").value > 0) {
         if (document.getElementById("cardioIntensity").value.length > 0) {
           // Initialise the date
-          const date = (new Date()).getTime();
+          const date = new Date().getTime();
 
           let options = {
             contractAddress: EightFit.address,
@@ -175,9 +186,11 @@ const Cardio = () => {
               userAddress: account,
               category: "Cardio",
               activityName: document.getElementById("cardioActivityName").value,
-              minutesCompleted: document.getElementById("cardioMinutesCompleted").value,
+              minutesCompleted: document.getElementById(
+                "cardioMinutesCompleted"
+              ).value,
               intensity: document.getElementById("cardioIntensity").value,
-              date: date
+              date: date,
             },
           };
 
@@ -187,13 +200,19 @@ const Cardio = () => {
               alert("Posted cardio activity!");
             },
           });
-        } else if (document.getElementById("cardioIntensity").value.length === 0) {
+        } else if (
+          document.getElementById("cardioIntensity").value.length === 0
+        ) {
           alert("Intensity cannot be left empty.");
         }
-      } else if (document.getElementById("cardioMinutesCompleted").value.length === 0) {
+      } else if (
+        document.getElementById("cardioMinutesCompleted").value.length === 0
+      ) {
         alert("Minutes completed cannot be left empty.");
       }
-    } else if (document.getElementById("cardioActivityName").value.length === 0) {
+    } else if (
+      document.getElementById("cardioActivityName").value.length === 0
+    ) {
       alert("Activity name cannot be left empty.");
     }
   };
@@ -208,32 +227,27 @@ const Cardio = () => {
           <h1>Fitness</h1>
 
           <h2>Cardio</h2>
-
-          <div className="cardio-goal">
-            <h3>Daily Cardio Goal</h3>
-            <p className="fitness-text-input">
-              <input
-                id="dailyCardioGoal"
-                type="number"
-                placeholder="0"
-              />
-              <Check className="save-icon" onClick={saveDailyCardioGoal} />
-            </p>
+          <div className="fitness-content">
+            <div className="cardio-goal">
+              <h3>Daily Cardio Goal</h3>
+              <p className="fitness-text-input">
+                <input id="dailyCardioGoal" type="number" placeholder="0" />
+                <Check className="save-icon" onClick={saveDailyCardioGoal} />
+              </p>
+            </div>
+            <div className="cardio-goal">
+              <h3>Weekly Cardio Goal</h3>
+              <p className="fitness-text-input">
+                <input id="weeklyCardioGoal" type="number" placeholder="0" />
+                <Check className="save-icon" onClick={saveWeeklyCardioGoal} />
+              </p>
+            </div>
+            <div>
+              <button className="edit-btn" onClick={exitEditDetails}>
+                Exit
+              </button>
+            </div>
           </div>
-
-          <div className="cardio-goal">
-            <h3>Weekly Cardio Goal</h3>
-            <p className="fitness-text-input">
-              <input
-                id="weeklyCardioGoal"
-                type="number"
-                placeholder="0"
-              />
-              <Check className="save-icon" onClick={saveWeeklyCardioGoal} />
-            </p>
-          </div>
-
-          <button className="edit-btn" onClick={exitEditDetails}>Exit</button>
 
           <div className="cardio-post-area">
             <h3>Cardio Activities</h3>
@@ -264,14 +278,17 @@ const Cardio = () => {
                 placeholder="Enter an intensity (i.e. low, medium, high)"
               />
             </p>
-
-            <button className="cardio-submit-btn" onClick={postCardioActivity}>Post</button>
-          </div>
-
-          <div className="cardio-posts">
-            {cardioPosts}
+            <div className="fitness-content">
+              <button
+                className="cardio-submit-btn"
+                onClick={postCardioActivity}
+              >
+                Post
+              </button>
+            </div>
           </div>
         </div>
+        <div className="cardio-posts">{cardioPosts}</div>
       </div>
     );
   } else {
@@ -283,21 +300,24 @@ const Cardio = () => {
           <h1>Fitness</h1>
 
           <h2>Cardio</h2>
+          <div className="fitness-content">
+            <div className="cardio-goal">
+              <h3>Daily Cardio Goal</h3>
+              <div className="cardio-data">{dailyCardioGoal} minutes</div>
+            </div>
 
-          <div className="cardio-goal">
-            <h3>Daily Cardio Goal</h3>
-            {dailyCardioGoal} minutes
+            <div className="cardio-goal">
+              <h3>Weekly Cardio Goal</h3>
+              <div className="cardio-data">{weeklyCardioGoal} minutes</div>
+            </div>
+            <div>
+              <button className="edit-btn" onClick={editDetails}>
+                Edit Goals
+              </button>
+            </div>
           </div>
-
-          <div className="cardio-goal">
-            <h3>Weekly Cardio Goal</h3>
-            {weeklyCardioGoal} minutes
-          </div>
-
-          <button className="edit-btn" onClick={editDetails}>Edit Goals</button>
-
           <div className="cardio-post-area">
-            <h3>Cardio Activities</h3>
+            <h2>Cardio Activities</h2>
 
             <p className="profile-heading">Activity Name</p>
             <p className="profile-text-input">
@@ -325,17 +345,20 @@ const Cardio = () => {
                 placeholder="Enter an intensity (i.e. low, medium, high)"
               />
             </p>
-
-            <button className="cardio-submit-btn" onClick={postCardioActivity}>Post</button>
-          </div>
-
-          <div className="cardio-posts">
-            {cardioPosts}
+            <div className="fitness-content">
+              <button
+                className="cardio-submit-btn"
+                onClick={postCardioActivity}
+              >
+                Post
+              </button>
+            </div>
           </div>
         </div>
+        <div className="cardio-posts">{cardioPosts}</div>
       </div>
     );
   }
-}
+};
 
 export default Cardio;
