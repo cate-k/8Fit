@@ -11,8 +11,6 @@ contract Storage {
   mapping(address => uint256[]) public weight;
   mapping(address => uint256) public points;
   mapping(address => uint256) public weightGoal;
-  mapping(address => uint256[]) public caloriesEaten;
-  mapping(address => uint256[]) public caloriesBurned;
   mapping(address => uint256) public dailyStepGoal;
   mapping(address => uint256) public weeklyStepGoal;
   mapping(address => uint256) public dailyCardioGoal;
@@ -59,22 +57,6 @@ contract Storage {
 
   function getWeightGoal(address userAddress) public view returns(uint256) {
     return weightGoal[userAddress];
-  }
-
-  function getCaloriesEatenCount(address userAddress) public view returns(uint256) {
-    return caloriesEaten[userAddress].length;
-  }
-
-  function getCaloriesEaten(address userAddress, uint256 index) public view returns(uint256) {
-    return caloriesEaten[userAddress][index];
-  }
-
-  function getCaloriesBurnedCount(address userAddress) public view returns(uint256) {
-    return caloriesBurned[userAddress].length;
-  }
-
-  function getCaloriesBurned(address userAddress, uint256 index) public view returns(uint256) {
-    return caloriesBurned[userAddress][index];
   }
 
   function getDailyStepGoal(address userAddress) public view returns(uint256) {
@@ -152,14 +134,6 @@ contract Storage {
 
   function changeWeightGoal(address userAddress, uint256 newWeightGoal) public {
     weightGoal[userAddress] = newWeightGoal;
-  }
-
-  function addCaloriesEatenToday(address userAddress, uint256 caloriesEatenToday) public {
-    caloriesEaten[userAddress].push(caloriesEatenToday);
-  }
-
-  function addCaloriesBurnedToday(address userAddress, uint256 caloriesBurnedToday) public {
-    caloriesBurned[userAddress].push(caloriesBurnedToday);
   }
 
   function changeDailyStepGoal(address userAddress, uint256 newDailyStepGoal) public {
