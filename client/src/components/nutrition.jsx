@@ -54,7 +54,7 @@ const Nutrition = () => {
               contractAddress: EightFit.address,
               functionName: "getCaloriesEatenPost",
               abi: EightFit.abi,
-              params: { caloriesEatenPostId: postIndex },
+              params: { caloriesEatenPostId: postIndex + 1 },
             };
 
             await contractProcessor.fetch({
@@ -93,7 +93,7 @@ const Nutrition = () => {
               contractAddress: EightFit.address,
               functionName: "getCaloriesBurnedPost",
               abi: EightFit.abi,
-              params: { caloriesBurnedPostId: postIndex },
+              params: { caloriesBurnedPostId: postIndex + 1 },
             };
 
             await contractProcessor.fetch({
