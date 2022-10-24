@@ -22,6 +22,8 @@ contract EightFit {
   }
 
   ShortPost[] public stepsPosts;
+  ShortPost[] public caloriesEatenPosts;
+  ShortPost[] public caloriesBurnedPosts;
   ShortPost[] public sleepPosts;
   Post[] public cardioPosts;
   Post[] public strengthTrainingPosts;
@@ -36,6 +38,22 @@ contract EightFit {
   function getStepsPost(uint256 stepsPostId) public view returns(ShortPost memory) {
     // The post's index in the array starts from zero, so 1 is subtracted from the ID
     return stepsPosts[stepsPostId - 1];
+  }
+
+  function getCaloriesEatenPostsCount() public view returns(uint256) {
+    return caloriesEatenPosts.length;
+  }
+
+  function getCaloriesEatenPost(uint256 caloriesEatenPostId) public view returns(ShortPost memory) {
+    return caloriesEatenPosts[caloriesEatenPostId - 1];
+  }
+
+  function getCaloriesBurnedPostsCount() public view returns(uint256) {
+    return caloriesBurnedPosts.length;
+  }
+
+  function getCaloriesBurnedPost(uint256 caloriesBurnedPostId) public view returns(ShortPost memory) {
+    return caloriesBurnedPosts[caloriesBurnedPostId - 1];
   }
 
   function getSleepPostsCount() public view returns(uint256) {
@@ -87,6 +105,32 @@ contract EightFit {
       if (stepsPosts[i].shortPostId == stepsPostId) {
         stepsPosts[i] = stepsPosts[stepsPosts.length - 1];
         stepsPosts.pop();
+      }
+    }
+  }
+
+  function addCaloriesEatenPost(address userAddress, uint256 caloriesEatenToday, uint256 date) public {
+    caloriesEatenPosts.push(ShortPost(caloriesEatenPosts.length + 1, userAddress, caloriesEatenToday, date));
+  }
+
+  function deleteCaloriesEatenPost(uint256 caloriesEatenPostId) public {
+    for (uint256 i = 0; i < caloriesEatenPosts.length; i++) {
+      if (caloriesEatenPosts[i].shortPostId == caloriesEatenPostId) {
+        caloriesEatenPosts[i] = caloriesEatenPosts[caloriesEatenPosts.length - 1];
+        caloriesEatenPosts.pop();
+      }
+    }
+  }
+
+  function addCaloriesBurnedPost(address userAddress, uint256 caloriesBurnedToday, uint256 date) public {
+    caloriesBurnedPosts.push(ShortPost(caloriesBurnedPosts.length + 1, userAddress, caloriesBurnedToday, date));
+  }
+
+  function deleteCaloriesBurnedPost(uint256 caloriesBurnedPostId) public {
+    for (uint256 i = 0; i < caloriesBurnedPosts.length; i++) {
+      if (caloriesBurnedPosts[i].shortPostId == caloriesBurnedPostId) {
+        caloriesBurnedPosts[i] = caloriesBurnedPosts[caloriesBurnedPosts.length - 1];
+        caloriesBurnedPosts.pop();
       }
     }
   }
