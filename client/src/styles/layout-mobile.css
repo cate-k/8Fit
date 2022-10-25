@@ -230,7 +230,8 @@
 }
 
 /* Steps */
-.steps-goal {
+.steps-goal,
+.nutrition-goal {
   background-color: var(--colour-wedgewood);
   color: var(--colour-white);
   border-radius: 20px;
@@ -246,7 +247,8 @@
   margin-bottom: 5%;
 }
 
-.steps-goal input {
+.steps-goal input,
+.nutrition-goal input {
   background-color: var(--colour-wedgewood);
   color: var(--colour-white);
   font-family: "Roboto Light";
@@ -257,7 +259,8 @@
   outline: 0;
 }
 
-.steps-goal input::placeholder {
+.steps-goal input::placeholder,
+.nutrition-goal input::placeholder {
   color: var(--colour-white);
 }
 
@@ -340,7 +343,8 @@
   margin-top: 15%;
 }
 
-.cardio .steps-post {
+.cardio .steps-post,
+.nutrition .steps-post {
   text-align: center;
   display: block;
   width: 65%;
@@ -349,4 +353,15 @@
 
 .cardio .steps-post .delete-icon {
   margin-top: 0;
+}
+
+/* Nutrition */
+.nutrition-goal h3 {
+  margin: 0;
+  margin-bottom: 5%;
+}
+
+.nutrition .steps-post .delete-icon {
+  margin-top: 0;
+  margin-bottom: 3%;
 }

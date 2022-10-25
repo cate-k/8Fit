@@ -32,17 +32,25 @@
     margin-top: 0;
   }
 
-  .cardio .steps-post {
+  .cardio .steps-post,
+  .nutrition .steps-post {
     display: flex;
     width: 80%;
   }
 
-  .cardio .steps-post p {
+  .cardio .steps-post p,
+  .nutrition .steps-post p {
     margin-right: 5%;
   }
 
-  .cardio .steps-post .delete-icon {
+  .cardio .steps-post .delete-icon,
+  .nutrition .steps-post .delete-icon {
     margin-top: 5%;
     margin-right: 5%;
+  }
+
+  /* Nutrition */
+  .nutrition-goal {
+    width: 50%;
   }
 }

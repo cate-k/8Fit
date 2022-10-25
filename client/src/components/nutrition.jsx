@@ -214,54 +214,51 @@ const Nutrition = () => {
       <div className="page">
         <Navigation />
 
-        <div className="content">
+        <div className="content nutrition">
           <h1>Nutrition</h1>
 
           <div className="nutrition-goal">
             <h3>Weight Goal</h3>
-            <p className="fitness-text-input">
-              <input
-                id="nutritionWeightGoal"
-                type="number"
-                placeholder={weightGoal}
-              />
-              <Check className="save-icon" onClick={saveWeightGoal} />
-            </p>
+            <input
+              id="nutritionWeightGoal"
+              type="number"
+              placeholder={weightGoal}
+            />
+            <Check className="save-icon" onClick={saveWeightGoal} />
           </div>
 
           <button className="edit-btn" onClick={exitEditDetails}>Exit</button>
 
           <div className="nutrition-post-area">
             <p className="profile-heading">Calories Eaten</p>
-            <p className="profile-text-input">
+            <div className="steps-taken">
               <input
                 id="nutritionCaloriesEaten"
                 type="number"
-                placeholder="Enter amount of calories eaten"
+                placeholder="0"
               />
-            </p>
-
-            <button className="nutrition-submit-btn" onClick={postCaloriesEaten}>Post</button>
+              <Check className="save-icon" onClick={postCaloriesEaten} />
+            </div>
           </div>
 
           <div className="nutrition-post-area">
             <p className="profile-heading">Calories Burned</p>
-            <p className="profile-text-input">
+            <div className="steps-taken">
               <input
                 id="nutritionCaloriesBurned"
                 type="number"
-                placeholder="Enter amount of calories burned"
+                placeholder="0"
               />
-            </p>
-
-            <button className="nutrition-submit-btn" onClick={postCaloriesBurned}>Post</button>
+              <Check className="save-icon" onClick={postCaloriesBurned} />
+            </div>
           </div>
 
-          <div className="nutrition-posts">
-            <h3>Calories Eaten</h3>
+          <div className="steps-posts">
+            <h2>Calories Eaten</h2>
             {caloriesEatenPosts}
+            <br />
 
-            <h3>Calories Burned</h3>
+            <h2>Calories Burned</h2>
             {caloriesBurnedPosts}
           </div>
         </div>
@@ -272,7 +269,7 @@ const Nutrition = () => {
       <div className="page">
         <Navigation />
 
-        <div className="content">
+        <div className="content nutrition">
           <h1>Nutrition</h1>
 
           <div className="nutrition-goal">
@@ -284,35 +281,34 @@ const Nutrition = () => {
 
           <div className="nutrition-post-area">
             <p className="profile-heading">Calories Eaten</p>
-            <p className="profile-text-input">
+            <div className="steps-taken">
               <input
                 id="nutritionCaloriesEaten"
                 type="number"
-                placeholder="Enter amount of calories eaten"
+                placeholder="0"
               />
-            </p>
-
-            <button className="nutrition-submit-btn" onClick={postCaloriesEaten}>Post</button>
+              <Check className="save-icon" onClick={postCaloriesEaten} />
+            </div>
           </div>
 
           <div className="nutrition-post-area">
             <p className="profile-heading">Calories Burned</p>
-            <p className="profile-text-input">
+            <div className="steps-taken">
               <input
                 id="nutritionCaloriesBurned"
                 type="number"
-                placeholder="Enter amount of calories burned"
+                placeholder="0"
               />
-            </p>
-
-            <button className="nutrition-submit-btn" onClick={postCaloriesBurned}>Post</button>
+              <Check className="save-icon" onClick={postCaloriesBurned} />
+            </div>
           </div>
 
-          <div className="nutrition-posts">
-            <h3>Calories Eaten</h3>
+          <div className="steps-posts">
+            <h2>Calories Eaten</h2>
             {caloriesEatenPosts}
+            <br />
 
-            <h3>Calories Burned</h3>
+            <h2>Calories Burned</h2>
             {caloriesBurnedPosts}
           </div>
         </div>

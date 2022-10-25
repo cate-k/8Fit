@@ -151,15 +151,33 @@
     margin-right: 5%;
   }
 
-  .cardio .steps-posts {
+  .cardio .steps-posts,
+  .nutrition .steps-posts {
     margin-top: 5%;
   }
 
-  .cardio .steps-post {
+  .cardio .steps-post,
+  .nutrition .steps-post {
     width: 60%;
   }
 
-  .cardio .steps-post .delete-icon {
+  .cardio .steps-post .delete-icon,
+  .nutrition .steps-post .delete-icon {
     margin-top: 3%;
+  }
+
+  /* Nutrition */
+  .nutrition-goal {
+    width: 30%;
+  }
+
+  .nutrition-goal .save-icon {
+    height: 5%;
+    width: 5%;
+  }
+
+  .nutrition .edit-btn {
+    margin-top: -2%;
+    margin-bottom: 5%;
   }
 }

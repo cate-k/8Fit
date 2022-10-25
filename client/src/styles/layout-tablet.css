@@ -89,4 +89,13 @@
   .cardio-post-area .profile-text-input {
     margin-bottom: 8%;
   }
+
+  /* Nutrition */
+  .nutrition-goal input {
+    font-size: 1.8rem;
+  }
+
+  .nutrition .edit-btn {
+    margin-top: -1%;
+  }
 }
