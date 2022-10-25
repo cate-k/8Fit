@@ -203,14 +203,9 @@ const StrengthTraining = () => {
             params: {
               userAddress: account,
               category: "Strength Training",
-              activityName: document.getElementById(
-                "strengthTrainingActivityName"
-              ).value,
-              minutesCompleted: document.getElementById(
-                "strengthTrainingMinutesCompleted"
-              ).value,
-              intensity: document.getElementById("strengthTrainingIntensity")
-                .value,
+              activityName: document.getElementById("strengthTrainingActivityName").value,
+              minutesCompleted: document.getElementById("strengthTrainingMinutesCompleted").value,
+              intensity: document.getElementById("strengthTrainingIntensity").value,
               date: date,
             },
           };
@@ -221,16 +216,10 @@ const StrengthTraining = () => {
               alert("Posted strength training activity!");
             },
           });
-        } else if (
-          document.getElementById("strengthTrainingIntensity").value.length ===
-          0
-        ) {
+        } else if (document.getElementById("strengthTrainingIntensity").value.length === 0) {
           alert("Intensity cannot be left empty.");
         }
-      } else if (
-        document.getElementById("strengthTrainingMinutesCompleted").value
-          .length === 0
-      ) {
+      } else if (document.getElementById("strengthTrainingMinutesCompleted").value.length === 0) {
         alert("Minutes completed cannot be left empty.");
       }
     } else if (
@@ -250,82 +239,68 @@ const StrengthTraining = () => {
           <h1>Fitness</h1>
 
           <h2>Strength Training</h2>
-          <div className="fitness-content">
-            <div className="strength-training-goal">
-              <h3>Daily Strength Training Goal</h3>
-              <p className="fitness-text-input">
-                <input
-                  id="dailyStrengthTrainingGoal"
-                  type="number"
-                  placeholder="0"
-                />
-                <Check
-                  className="save-icon"
-                  onClick={saveDailyStrengthTrainingGoal}
-                />
-              </p>
+          <div className="fitness-content cardio">
+            <div className="steps-goals">
+              <div className="steps-goal">
+                <h3>Daily Strength Training Goal</h3>
+                <input id="dailyStrengthTrainingGoal" type="number" placeholder="0" />
+                <Check className="save-icon" onClick={saveDailyStrengthTrainingGoal} />
+              </div>
+
+              <div className="steps-goal">
+                <h3>Weekly Strength Training Goal</h3>
+                <input id="weeklyStrengthTrainingGoal" type="number" placeholder="0" />
+                <Check className="save-icon" onClick={saveWeeklyStrengthTrainingGoal} />
+              </div>
             </div>
 
-            <div className="strength-training-goal">
-              <h3>Weekly Strength Training Goal</h3>
-              <p className="fitness-text-input">
-                <input
-                  id="weeklyStrengthTrainingGoal"
-                  type="number"
-                  placeholder="0"
-                />
-                <Check
-                  className="save-icon"
-                  onClick={saveWeeklyStrengthTrainingGoal}
-                />
-              </p>
-            </div>
-            <div>
-              <button className="edit-btn" onClick={exitEditDetails}>
-                Exit
-              </button>
-            </div>
-          </div>
-          <div className="strength-training-post-area">
+            <button className="edit-btn" onClick={exitEditDetails}>
+              Exit
+            </button>
+            <br />
+
             <h2>Strength Training Activities</h2>
+            <div className="cardio-post-area">
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Activity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="strengthTrainingActivityName"
+                    type="text"
+                    placeholder="(E.g. Weights, Crossfit)"
+                  />
+                </div>
+              </div>
 
-            <p className="profile-heading">Activity Name</p>
-            <p className="profile-text-input">
-              <input
-                id="strengthTrainingActivityName"
-                type="text"
-                placeholder="Enter an activity name (e.g. weights, Crossfit, circuit training)"
-              />
-            </p>
+              <div className="cardio-post-field centre">
+                <p className="cardio-heading">Activity Duration in Minutes</p>
+                <div className="profile-text-input">
+                  <input
+                    id="strengthTrainingMinutesCompleted"
+                    type="number"
+                    placeholder="Enter duration in minutes"
+                  />
+                </div>
+              </div>
 
-            <p className="profile-heading">Minutes Completed</p>
-            <p className="profile-text-input">
-              <input
-                id="strengthTrainingMinutesCompleted"
-                type="number"
-                placeholder="Enter activity length in minutes"
-              />
-            </p>
-
-            <p className="profile-heading">Intensity</p>
-            <p className="profile-text-input">
-              <input
-                id="strengthTrainingIntensity"
-                type="text"
-                placeholder="Enter an intensity (i.e. low, medium, high)"
-              />
-            </p>
-            <div className="fitness-content">
-              <button
-                className="strength-training-submit-btn"
-                onClick={postStrengthTrainingActivity}
-              >
-                Post
-              </button>
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Intensity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="strengthTrainingIntensity"
+                    type="text"
+                    placeholder="(I.e. Low, Medium, High)"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="strength-training-posts">{strengthTrainingPosts}</div>
+            <button className="edit-btn" onClick={postStrengthTrainingActivity}>
+              Post
+            </button>
+
+            <div className="steps-posts">{strengthTrainingPosts}</div>
+          </div>
         </div>
       </div>
     );
@@ -338,66 +313,66 @@ const StrengthTraining = () => {
           <h1>Fitness</h1>
 
           <h2>Strength Training</h2>
-          <div className="fitness-content">
-            <div className="strength-training-goal">
-              <h3>Daily Strength Training Goal</h3>
-              <div className="strength-training-data">
+          <div className="fitness-content cardio">
+            <div className="steps-goals">
+              <div className="steps-goal">
+                <h3>Daily Strength Training Goal</h3>
                 {dailyStrengthTrainingGoal} minutes
               </div>
-            </div>
 
-            <div className="strength-training-goal">
-              <h3>Weekly Strength Training Goal</h3>
-              <div className="strength-training-data">
+              <div className="steps-goal">
+                <h3>Weekly Strength Training Goal</h3>
                 {weeklyStrengthTrainingGoal} minutes
               </div>
             </div>
-            <div>
-              <button className="edit-btn" onClick={editDetails}>
-                Edit Goals
-              </button>
-            </div>
-          </div>
-          <div className="strength-training-post-area">
+
+            <button className="edit-btn" onClick={editDetails}>
+              Edit Goals
+            </button>
+            <br />
+
             <h2>Strength Training Activities</h2>
+            <div className="cardio-post-area">
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Activity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="strengthTrainingActivityName"
+                    type="text"
+                    placeholder="(E.g. Weights, Crossfit)"
+                  />
+                </div>
+              </div>
 
-            <p className="profile-heading">Activity Name</p>
-            <p className="profile-text-input">
-              <input
-                id="strengthTrainingActivityName"
-                type="text"
-                placeholder="Enter an activity name (e.g. weights, Crossfit, circuit training)"
-              />
-            </p>
+              <div className="cardio-post-field centre">
+                <p className="cardio-heading">Activity Duration in Minutes</p>
+                <div className="profile-text-input">
+                  <input
+                    id="strengthTrainingMinutesCompleted"
+                    type="number"
+                    placeholder="Enter duration in minutes"
+                  />
+                </div>
+              </div>
 
-            <p className="profile-heading">Minutes Completed</p>
-            <p className="profile-text-input">
-              <input
-                id="strengthTrainingMinutesCompleted"
-                type="number"
-                placeholder="Enter activity length in minutes"
-              />
-            </p>
-
-            <p className="profile-heading">Intensity</p>
-            <p className="profile-text-input">
-              <input
-                id="strengthTrainingIntensity"
-                type="text"
-                placeholder="Enter an intensity (i.e. low, medium, high)"
-              />
-            </p>
-            <div className="fitness-content">
-              <button
-                className="strength-training-submit-btn"
-                onClick={postStrengthTrainingActivity}
-              >
-                Post
-              </button>
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Intensity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="strengthTrainingIntensity"
+                    type="text"
+                    placeholder="(I.e. Low, Medium, High)"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="strength-training-posts">{strengthTrainingPosts}</div>
+            <button className="edit-btn" onClick={postStrengthTrainingActivity}>
+              Post
+            </button>
+
+            <div className="steps-posts">{strengthTrainingPosts}</div>
+          </div>
         </div>
       </div>
     );

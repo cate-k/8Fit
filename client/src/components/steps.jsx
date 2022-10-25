@@ -205,29 +205,26 @@ const Fitness = () => {
 
           <h2>Steps</h2>
           <div className="fitness-content">
-            <div className="steps-goal">
-              <h3>Daily Steps Goal</h3>
-              <p className="fitness-text-input">
+            <div className="steps-goals">
+              <div className="steps-goal">
+                <h3>Daily Steps Goal</h3>
                 <input id="dailyStepsGoal" type="number" placeholder="0" />
                 <Check className="save-icon" onClick={saveDailyStepsGoal} />
-              </p>
-            </div>
+              </div>
 
-            <div className="steps-goal">
-              <h3>Weekly Steps Goal</h3>
-              <p className="fitness-text-input">
+              <div className="steps-goal">
+                <h3>Weekly Steps Goal</h3>
                 <input id="weeklyStepsGoal" type="number" placeholder="0" />
                 <Check className="save-icon" onClick={saveWeeklyStepsGoal} />
-              </p>
-            </div>
-            <div>
-              <button className="edit-btn" onClick={exitEditDetails}>
-                Exit
-              </button>
+              </div>
             </div>
 
+            <button className="edit-btn" onClick={exitEditDetails}>
+              Exit
+            </button>
+
+            <h2 className="steps-taken-heading">Steps Taken Today</h2>
             <div className="steps-taken">
-              <h2>Steps Taken Today</h2>
               <input id="stepsTaken" type="number" placeholder="0" />
               <Check className="save-icon" onClick={postStepsTaken} />
             </div>
@@ -247,24 +244,24 @@ const Fitness = () => {
 
           <h2>Steps</h2>
           <div className="fitness-content">
-            <div className="steps-goal">
-              <h3>Daily Steps Goal</h3>
-              <div className="steps-data">{dailyStepGoal}</div>
+            <div className="steps-goals">
+              <div className="steps-goal">
+                <h3>Daily Steps Goal</h3>
+                {dailyStepGoal}
+              </div>
+
+              <div className="steps-goal">
+                <h3>Weekly Steps Goal</h3>
+                {weeklyStepGoal}
+              </div>
             </div>
 
-            <div className="steps-goal">
-              <h3>Weekly Steps Goal</h3>
-              <div className="steps-data">{weeklyStepGoal}</div>
-            </div>
+            <button className="edit-btn" onClick={editDetails}>
+              Edit Goals
+            </button>
 
-            <div>
-              <button className="edit-btn" onClick={editDetails}>
-                Edit Goals
-              </button>
-            </div>
-
+            <h2 className="steps-taken-heading">Steps Taken Today</h2>
             <div className="steps-taken">
-              <h2>Steps Taken Today</h2>
               <input id="stepsTaken" type="number" placeholder="0" />
               <Check className="save-icon" onClick={postStepsTaken} />
             </div>

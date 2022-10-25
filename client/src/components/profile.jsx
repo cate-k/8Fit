@@ -261,28 +261,28 @@ const Profile = () => {
           <h1>Profile</h1>
 
           <p className="profile-heading">Display Name</p>
-          <p className="profile-text-input">
+          <div className="profile-text-input">
             <input id="displayName" type="text" placeholder={displayName} />
             <Check className="save-icon" onClick={saveDisplayName} />
-          </p>
+          </div>
 
           <p className="profile-heading">Age</p>
-          <p className="profile-text-input">
+          <div className="profile-text-input">
             <input id="age" type="number" placeholder={age} />
             <Check className="save-icon" onClick={saveAge} />
-          </p>
+          </div>
 
           <p className="profile-heading">Gender</p>
-          <p className="profile-text-input">
+          <div className="profile-text-input">
             <input id="gender" type="text" placeholder="Enter your gender" />
             <Check className="save-icon" onClick={saveGender} />
-          </p>
+          </div>
 
           <p className="profile-heading">Height (in cm)</p>
-          <p className="profile-text-input">
+          <div className="profile-text-input">
             <input id="height" type="number" placeholder={height} />
             <Check className="save-icon" onClick={saveHeight} />
-          </p>
+          </div>
 
           <p className="profile-heading">Weight (in kg)</p>
           <p className="profile-text-input last">
@@ -305,19 +305,19 @@ const Profile = () => {
           <h1>Profile</h1>
 
           <p className="profile-heading">Display Name</p>
-          <p>{displayName}</p>
+          <p className="profile-info">{displayName}</p>
 
           <p className="profile-heading">Age</p>
-          <p>{parseInt(BigNumber.from(age).toHexString())}</p>
+          <p className="profile-info">{parseInt(BigNumber.from(age).toHexString())}</p>
 
           <p className="profile-heading">Gender</p>
-          <p>{gender}</p>
+          <p className="profile-info">{gender}</p>
 
           <p className="profile-heading">Height (in cm)</p>
-          <p>{parseInt(BigNumber.from(height).toHexString())}</p>
+          <p className="profile-info">{parseInt(BigNumber.from(height).toHexString())}</p>
 
           <p className="profile-heading">Weight (in kg)</p>
-          <p>{parseInt(BigNumber.from(weight).toHexString())}</p>
+          <p className="profile-info">{parseInt(BigNumber.from(weight).toHexString())}</p>
 
           <button className="edit-btn" onClick={editProfileDetails}>
             Edit Profile Details

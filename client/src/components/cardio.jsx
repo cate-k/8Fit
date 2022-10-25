@@ -34,9 +34,7 @@ const Cardio = () => {
         params: options,
         onSuccess: async (dailyCardioGoal) => {
           if (dailyCardioGoal !== "") {
-            setDailyCardioGoal(
-              parseInt(BigNumber.from(dailyCardioGoal).toHexString())
-            );
+            setDailyCardioGoal(parseInt(BigNumber.from(dailyCardioGoal).toHexString()));
           }
         },
       });
@@ -70,11 +68,7 @@ const Cardio = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalCardioPostsCreated) => {
-          for (
-            let cardioPostsIndex = 0;
-            cardioPostsIndex < totalCardioPostsCreated;
-            cardioPostsIndex++
-          ) {
+          for (let cardioPostsIndex = 0; cardioPostsIndex < totalCardioPostsCreated; cardioPostsIndex++) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getCardioPost",
@@ -86,9 +80,7 @@ const Cardio = () => {
               params: options,
               onSuccess: (cardioPost) => {
                 // Display the user's previous logs of cardio activities
-                if (
-                  cardioPost.userAddress.toLowerCase() === account.toLowerCase()
-                ) {
+                if (cardioPost.userAddress.toLowerCase() === account.toLowerCase()) {
                   setCardioPosts(
                     <CardioPost
                       key={cardioPosts.length}
@@ -227,68 +219,69 @@ const Cardio = () => {
           <h1>Fitness</h1>
 
           <h2>Cardio</h2>
-          <div className="fitness-content">
-            <div className="cardio-goal">
-              <h3>Daily Cardio Goal</h3>
-              <p className="fitness-text-input">
+          <div className="fitness-content cardio">
+            <div className="steps-goals">
+              <div className="steps-goal">
+                <h3>Daily Cardio Goal</h3>
                 <input id="dailyCardioGoal" type="number" placeholder="0" />
                 <Check className="save-icon" onClick={saveDailyCardioGoal} />
-              </p>
-            </div>
-            <div className="cardio-goal">
-              <h3>Weekly Cardio Goal</h3>
-              <p className="fitness-text-input">
+              </div>
+
+              <div className="steps-goal">
+                <h3>Weekly Cardio Goal</h3>
                 <input id="weeklyCardioGoal" type="number" placeholder="0" />
                 <Check className="save-icon" onClick={saveWeeklyCardioGoal} />
-              </p>
+              </div>
             </div>
-            <div>
-              <button className="edit-btn" onClick={exitEditDetails}>
-                Exit
-              </button>
+
+            <button className="edit-btn" onClick={exitEditDetails}>
+              Exit
+            </button>
+            <br />
+
+            <h2>Cardio Activities</h2>
+            <div className="cardio-post-area">
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Activity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioActivityName"
+                    type="text"
+                    placeholder="(E.g. Running, Swimming)"
+                  />
+                </div>
+              </div>
+
+              <div className="cardio-post-field centre">
+                <p className="cardio-heading">Activity Duration in Minutes</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioMinutesCompleted"
+                    type="number"
+                    placeholder="Enter duration in minutes"
+                  />
+                </div>
+              </div>
+
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Intensity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioIntensity"
+                    type="text"
+                    placeholder="(I.e. Low, Medium, High)"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="cardio-post-area">
-            <h3>Cardio Activities</h3>
+            <button className="edit-btn" onClick={postCardioActivity}>
+              Post
+            </button>
 
-            <p className="profile-heading">Activity Name</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioActivityName"
-                type="text"
-                placeholder="Enter an activity name (e.g. running, cycling, swimming)"
-              />
-            </p>
-
-            <p className="profile-heading">Minutes Completed</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioMinutesCompleted"
-                type="number"
-                placeholder="Enter activity length in minutes"
-              />
-            </p>
-
-            <p className="profile-heading">Intensity</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioIntensity"
-                type="text"
-                placeholder="Enter an intensity (i.e. low, medium, high)"
-              />
-            </p>
-            <div className="fitness-content">
-              <button
-                className="cardio-submit-btn"
-                onClick={postCardioActivity}
-              >
-                Post
-              </button>
-            </div>
+            <div className="steps-posts">{cardioPosts}</div>
           </div>
         </div>
-        <div className="cardio-posts">{cardioPosts}</div>
       </div>
     );
   } else {
@@ -300,62 +293,67 @@ const Cardio = () => {
           <h1>Fitness</h1>
 
           <h2>Cardio</h2>
-          <div className="fitness-content">
-            <div className="cardio-goal">
-              <h3>Daily Cardio Goal</h3>
-              <div className="cardio-data">{dailyCardioGoal} minutes</div>
+          <div className="fitness-content cardio">
+            <div className="steps-goals">
+              <div className="steps-goal">
+                <h3>Daily Cardio Goal</h3>
+                {dailyCardioGoal} minutes
+              </div>
+
+              <div className="steps-goal">
+                <h3>Weekly Cardio Goal</h3>
+                {weeklyCardioGoal} minutes
+              </div>
             </div>
 
-            <div className="cardio-goal">
-              <h3>Weekly Cardio Goal</h3>
-              <div className="cardio-data">{weeklyCardioGoal} minutes</div>
-            </div>
-            <div>
-              <button className="edit-btn" onClick={editDetails}>
-                Edit Goals
-              </button>
-            </div>
-          </div>
-          <div className="cardio-post-area">
+            <button className="edit-btn" onClick={editDetails}>
+              Edit Goals
+            </button>
+            <br />
+
             <h2>Cardio Activities</h2>
+            <div className="cardio-post-area">
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Activity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioActivityName"
+                    type="text"
+                    placeholder="(E.g. Running, Swimming)"
+                  />
+                </div>
+              </div>
 
-            <p className="profile-heading">Activity Name</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioActivityName"
-                type="text"
-                placeholder="Enter an activity name (e.g. running, cycling, swimming)"
-              />
-            </p>
+              <div className="cardio-post-field centre">
+                <p className="cardio-heading">Activity Duration in Minutes</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioMinutesCompleted"
+                    type="number"
+                    placeholder="Enter duration in minutes"
+                  />
+                </div>
+              </div>
 
-            <p className="profile-heading">Minutes Completed</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioMinutesCompleted"
-                type="number"
-                placeholder="Enter activity length in minutes"
-              />
-            </p>
-
-            <p className="profile-heading">Intensity</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioIntensity"
-                type="text"
-                placeholder="Enter an intensity (i.e. low, medium, high)"
-              />
-            </p>
-            <div className="fitness-content">
-              <button
-                className="cardio-submit-btn"
-                onClick={postCardioActivity}
-              >
-                Post
-              </button>
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Intensity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioIntensity"
+                    type="text"
+                    placeholder="(I.e. Low, Medium, High)"
+                  />
+                </div>
+              </div>
             </div>
+
+            <button className="edit-btn" onClick={postCardioActivity}>
+              Post
+            </button>
+
+            <div className="steps-posts">{cardioPosts}</div>
           </div>
         </div>
-        <div className="cardio-posts">{cardioPosts}</div>
       </div>
     );
   }

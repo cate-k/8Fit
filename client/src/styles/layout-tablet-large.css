@@ -12,9 +12,37 @@
   .link-icon {
     margin-top: 30%;
   }
-}
 
-/* fitness*/
-.fitness-links {
-  margin-left: 10%;
+  /* Fitness */
+  .fitness-links .highlighted-btn {
+    width: 60%;
+  }
+
+  /* Steps */
+  .steps-goal {
+    width: 50%;
+  }
+
+  .steps-post .delete-icon {
+    margin-top: 5%;
+  }
+
+  /* Cardio */
+  .cardio .steps-posts {
+    margin-top: 0;
+  }
+
+  .cardio .steps-post {
+    display: flex;
+    width: 80%;
+  }
+
+  .cardio .steps-post p {
+    margin-right: 5%;
+  }
+
+  .cardio .steps-post .delete-icon {
+    margin-top: 5%;
+    margin-right: 5%;
+  }
 }

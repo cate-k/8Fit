@@ -69,9 +69,97 @@
 
   .edit-btn {
     font-size: 1.5rem;
-    margin-top: 2%;
+    margin-top: 4%;
     padding: 1%;
     padding-left: 5%;
     padding-right: 5%;
+  }
+
+  /* Fitness */
+  .fitness-links .highlighted-btn {
+    width: 30%;
+    margin-bottom: 3%;
+  }
+
+  /* Steps */
+  .steps-goals {
+    display: flex;
+  }
+
+  .steps-goal {
+    width: 30%;
+  }
+
+  .steps-goal:last-child {
+    margin-left: -3%;
+  }
+
+  .steps-goal input {
+    font-size: 1.5rem;
+  }
+
+  .steps-goal .save-icon {
+    height: 5%;
+    width: 5%;
+  }
+
+  .steps-taken-heading {
+    margin-top: 5%;
+  }
+
+  .steps-taken input {
+    width: 20%;
+    padding: 1%;
+  }
+
+  .steps-taken .save-icon {
+    margin-top: 1.5%;
+  }
+
+  .steps-posts {
+    margin-top: -1%;
+  }
+
+  .steps-post {
+    width: 50%;
+    margin-top: 2%;
+    padding: 1%;
+  }
+
+  .steps-info {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .steps-post .delete-icon {
+    margin-top: 3.5%;
+  }
+
+  /* Cardio */
+  .cardio-post-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+  }
+
+  .cardio-post-field .profile-text-input {
+    margin-top: 4%;
+  }
+
+  .cardio-post-field.centre {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .cardio .steps-posts {
+    margin-top: 5%;
+  }
+
+  .cardio .steps-post {
+    width: 60%;
+  }
+
+  .cardio .steps-post .delete-icon {
+    margin-top: 3%;
   }
 }

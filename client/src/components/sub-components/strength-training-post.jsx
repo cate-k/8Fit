@@ -9,6 +9,7 @@ const StrengthTrainingPost = (props) => {
   const { account } = useMoralis();
   const contractProcessor = useWeb3ExecuteFunction();
 
+  const date = new Date(parseInt(BigNumber.from(props.date).toHexString())).toString('DD/mm/yy HH:mm:ss');
   const [minutesCompleted, setMinutesCompleted] = useState(0);
 
   useEffect(() => {
@@ -33,10 +34,14 @@ const StrengthTrainingPost = (props) => {
   }
 
   return (
-    <div className="strength-training-post">
-      <p>{minutesCompleted} minutes of {props.activityName}</p>
+    <div className="steps-post">
+      <p>{date.substring(date.indexOf(' ') + 1, date.indexOf(' ') + 12)}</p>
 
-      <p>Date Posted: {new Date(parseInt(BigNumber.from(props.date).toHexString())).toString('DD/mm/yy HH:mm:ss')}</p>
+      <p>{props.activityName}</p>
+
+      <p>{minutesCompleted} minutes</p>
+
+      <p>{props.intensity}</p>
 
       <Trash className="delete-icon" onClick={deleteStrengthTrainingPost} />
     </div>

@@ -17,13 +17,13 @@
 /* Colours */
 :root {
   --colour-rich-black: #0c0c0c;
+  --colour-wedgewood: #46769b;
   --colour-lilac-bush: #a87cd4;
   --colour-blue-green: #53dfd1;
   --colour-teal: #59d7ee;
   --colour-tiffany-blue: #9de3f6;
   --colour-baby-blue: #d3f4fb;
   --colour-white: #ffffff;
-  --colour-blue-gray: #46769b;
 }
 
 /* General settings */
@@ -43,6 +43,7 @@ h1 {
   color: var(--colour-lilac-bush);
   font-family: "Oswald";
   letter-spacing: 0.2rem;
+  text-align: center;
 }
 
 h2 {
@@ -55,7 +56,6 @@ h2 {
 
 h3 {
   text-align: center;
-  color: var(--colour-white);
   font-family: "Oswald";
   font-weight: lighter;
   letter-spacing: 0.1rem;
