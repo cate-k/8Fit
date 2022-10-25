@@ -157,12 +157,19 @@
 /* Profile */
 .profile-heading {
   font-weight: bold;
-  margin: 0;
+  display: flex;
+  justify-content: center;
   margin-top: 10%;
 }
 
+.profile-info {
+  display: flex;
+  justify-content: center;
+}
+
 .profile-text-input {
-  margin: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .profile-text-input input {
@@ -188,7 +195,8 @@
   cursor: pointer;
 }
 
-.save-icon:hover {
+.profile .save-icon:hover,
+.steps-taken .save-icon:hover {
   color: var(--colour-teal);
   transition: all 0.5s;
 }
@@ -200,7 +208,9 @@
   background-color: var(--colour-blue-green);
   border: 0;
   border-radius: 10px;
-  margin-top: 5%;
+  display: block;
+  margin: auto;
+  margin-top: 10%;
   padding: 5%;
   padding-left: 10%;
   padding-right: 10%;
@@ -213,6 +223,145 @@
 }
 
 /* Fitness */
+.fitness-links .highlighted-btn {
+  width: 18rem;
+  margin: auto;
+  margin-bottom: 5%;
+}
+
+/* Steps */
+.steps-goal,
+.nutrition-goal {
+  background-color: var(--colour-wedgewood);
+  color: var(--colour-white);
+  border-radius: 20px;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 5%;
+  padding: 5%;
+}
+
+.steps-goal h3 {
+  margin: 0;
+  margin-bottom: 5%;
+}
+
+.steps-goal input,
+.nutrition-goal input {
+  background-color: var(--colour-wedgewood);
+  color: var(--colour-white);
+  font-family: "Roboto Light";
+  font-size: 1.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--colour-rich-black);
+  width: 60%;
+  outline: 0;
+}
+
+.steps-goal input::placeholder,
+.nutrition-goal input::placeholder {
+  color: var(--colour-white);
+}
+
+.fitness-content .edit-btn {
+  display: block;
+  margin: auto;
+}
+
+.steps-taken-heading {
+  margin-top: 15%;
+}
+
+.steps-taken {
+  display: flex;
+  justify-content: center;
+}
+
+.steps-taken input {
+  border: 1px solid var(--colour-rich-black);
+  border-radius: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 50%;
+  margin-bottom: 2%;
+  padding: 3%;
+  outline: 0;
+}
+
+.steps-taken input:focus {
+  border: 1px solid var(--colour-teal);
+  transition: all 0.5s;
+}
+
+.steps-taken .save-icon {
+  margin-top: 4%;
+}
+
+.steps-posts {
+  margin-top: 10%;
+}
+
+.steps-post {
+  background-color: var(--colour-blue-green);
+  border: 1px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  margin: auto;
+  margin-top: 5%;
+  padding: 5%;
+}
+
+.steps-info {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .delete-icon {
   cursor: pointer;
+}
+
+.steps-post .delete-icon {
+  margin-top: 7%;
+}
+
+/* Cardio */
+.cardio-heading {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.cardio-post-area .profile-text-input {
+  margin-bottom: 15%;
+}
+
+.cardio .steps-posts {
+  margin-top: 15%;
+}
+
+.cardio .steps-post,
+.nutrition .steps-post {
+  text-align: center;
+  display: block;
+  width: 65%;
+  padding: 2%;
+}
+
+.cardio .steps-post .delete-icon {
+  margin-top: 0;
+}
+
+/* Nutrition */
+.nutrition-goal h3 {
+  margin: 0;
+  margin-bottom: 5%;
+}
+
+.nutrition .steps-post .delete-icon {
+  margin-top: 0;
+  margin-bottom: 3%;
 }

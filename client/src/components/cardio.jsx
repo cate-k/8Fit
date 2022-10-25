@@ -51,7 +51,9 @@ const Cardio = () => {
         params: options,
         onSuccess: async (weeklyCardioGoal) => {
           if (weeklyCardioGoal !== "") {
-            setWeeklyCardioGoal(parseInt(BigNumber.from(weeklyCardioGoal).toHexString()));
+            setWeeklyCardioGoal(
+              parseInt(BigNumber.from(weeklyCardioGoal).toHexString())
+            );
           }
         },
       });
@@ -92,7 +94,7 @@ const Cardio = () => {
                     />
                   );
                 }
-              }
+              },
             });
           }
         },
@@ -104,11 +106,11 @@ const Cardio = () => {
 
   const editDetails = () => {
     setToggleEdit(true);
-  }
+  };
 
   const exitEditDetails = () => {
     setToggleEdit(false);
-  }
+  };
 
   const saveDailyCardioGoal = async () => {
     if (document.getElementById("dailyCardioGoal").value > 0) {
@@ -118,10 +120,10 @@ const Cardio = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newDailyCardioGoal: document.getElementById("dailyCardioGoal").value
+          newDailyCardioGoal: document.getElementById("dailyCardioGoal").value,
         },
       };
-      
+
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (dailyCardioGoal) => {
@@ -143,10 +145,11 @@ const Cardio = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newWeeklyCardioGoal: document.getElementById("weeklyCardioGoal").value
+          newWeeklyCardioGoal:
+            document.getElementById("weeklyCardioGoal").value,
         },
       };
-      
+
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (weeklyCardioGoal) => {
@@ -165,7 +168,7 @@ const Cardio = () => {
       if (document.getElementById("cardioMinutesCompleted").value > 0) {
         if (document.getElementById("cardioIntensity").value.length > 0) {
           // Initialise the date
-          const date = (new Date()).getTime();
+          const date = new Date().getTime();
 
           let options = {
             contractAddress: EightFit.address,
@@ -175,9 +178,11 @@ const Cardio = () => {
               userAddress: account,
               category: "Cardio",
               activityName: document.getElementById("cardioActivityName").value,
-              minutesCompleted: document.getElementById("cardioMinutesCompleted").value,
+              minutesCompleted: document.getElementById(
+                "cardioMinutesCompleted"
+              ).value,
               intensity: document.getElementById("cardioIntensity").value,
-              date: date
+              date: date,
             },
           };
 
@@ -187,13 +192,19 @@ const Cardio = () => {
               alert("Posted cardio activity!");
             },
           });
-        } else if (document.getElementById("cardioIntensity").value.length === 0) {
+        } else if (
+          document.getElementById("cardioIntensity").value.length === 0
+        ) {
           alert("Intensity cannot be left empty.");
         }
-      } else if (document.getElementById("cardioMinutesCompleted").value.length === 0) {
+      } else if (
+        document.getElementById("cardioMinutesCompleted").value.length === 0
+      ) {
         alert("Minutes completed cannot be left empty.");
       }
-    } else if (document.getElementById("cardioActivityName").value.length === 0) {
+    } else if (
+      document.getElementById("cardioActivityName").value.length === 0
+    ) {
       alert("Activity name cannot be left empty.");
     }
   };
@@ -208,68 +219,67 @@ const Cardio = () => {
           <h1>Fitness</h1>
 
           <h2>Cardio</h2>
+          <div className="fitness-content cardio">
+            <div className="steps-goals">
+              <div className="steps-goal">
+                <h3>Daily Cardio Goal</h3>
+                <input id="dailyCardioGoal" type="number" placeholder="0" />
+                <Check className="save-icon" onClick={saveDailyCardioGoal} />
+              </div>
 
-          <div className="cardio-goal">
-            <h3>Daily Cardio Goal</h3>
-            <p className="fitness-text-input">
-              <input
-                id="dailyCardioGoal"
-                type="number"
-                placeholder="0"
-              />
-              <Check className="save-icon" onClick={saveDailyCardioGoal} />
-            </p>
-          </div>
+              <div className="steps-goal">
+                <h3>Weekly Cardio Goal</h3>
+                <input id="weeklyCardioGoal" type="number" placeholder="0" />
+                <Check className="save-icon" onClick={saveWeeklyCardioGoal} />
+              </div>
+            </div>
 
-          <div className="cardio-goal">
-            <h3>Weekly Cardio Goal</h3>
-            <p className="fitness-text-input">
-              <input
-                id="weeklyCardioGoal"
-                type="number"
-                placeholder="0"
-              />
-              <Check className="save-icon" onClick={saveWeeklyCardioGoal} />
-            </p>
-          </div>
+            <button className="edit-btn" onClick={exitEditDetails}>
+              Exit
+            </button>
+            <br />
 
-          <button className="edit-btn" onClick={exitEditDetails}>Exit</button>
+            <h2>Cardio Activities</h2>
+            <div className="cardio-post-area">
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Activity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioActivityName"
+                    type="text"
+                    placeholder="(E.g. Running, Swimming)"
+                  />
+                </div>
+              </div>
 
-          <div className="cardio-post-area">
-            <h3>Cardio Activities</h3>
+              <div className="cardio-post-field centre">
+                <p className="cardio-heading">Activity Duration in Minutes</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioMinutesCompleted"
+                    type="number"
+                    placeholder="Enter duration in minutes"
+                  />
+                </div>
+              </div>
 
-            <p className="profile-heading">Activity Name</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioActivityName"
-                type="text"
-                placeholder="Enter an activity name (e.g. running, cycling, swimming)"
-              />
-            </p>
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Intensity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioIntensity"
+                    type="text"
+                    placeholder="(I.e. Low, Medium, High)"
+                  />
+                </div>
+              </div>
+            </div>
 
-            <p className="profile-heading">Minutes Completed</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioMinutesCompleted"
-                type="number"
-                placeholder="Enter activity length in minutes"
-              />
-            </p>
+            <button className="edit-btn" onClick={postCardioActivity}>
+              Post
+            </button>
 
-            <p className="profile-heading">Intensity</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioIntensity"
-                type="text"
-                placeholder="Enter an intensity (i.e. low, medium, high)"
-              />
-            </p>
-
-            <button className="cardio-submit-btn" onClick={postCardioActivity}>Post</button>
-          </div>
-
-          <div className="cardio-posts">
-            {cardioPosts}
+            <div className="steps-posts">{cardioPosts}</div>
           </div>
         </div>
       </div>
@@ -283,59 +293,70 @@ const Cardio = () => {
           <h1>Fitness</h1>
 
           <h2>Cardio</h2>
+          <div className="fitness-content cardio">
+            <div className="steps-goals">
+              <div className="steps-goal">
+                <h3>Daily Cardio Goal</h3>
+                {dailyCardioGoal} minutes
+              </div>
 
-          <div className="cardio-goal">
-            <h3>Daily Cardio Goal</h3>
-            {dailyCardioGoal} minutes
-          </div>
+              <div className="steps-goal">
+                <h3>Weekly Cardio Goal</h3>
+                {weeklyCardioGoal} minutes
+              </div>
+            </div>
 
-          <div className="cardio-goal">
-            <h3>Weekly Cardio Goal</h3>
-            {weeklyCardioGoal} minutes
-          </div>
+            <button className="edit-btn" onClick={editDetails}>
+              Edit Goals
+            </button>
+            <br />
 
-          <button className="edit-btn" onClick={editDetails}>Edit Goals</button>
+            <h2>Cardio Activities</h2>
+            <div className="cardio-post-area">
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Activity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioActivityName"
+                    type="text"
+                    placeholder="(E.g. Running, Swimming)"
+                  />
+                </div>
+              </div>
 
-          <div className="cardio-post-area">
-            <h3>Cardio Activities</h3>
+              <div className="cardio-post-field centre">
+                <p className="cardio-heading">Activity Duration in Minutes</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioMinutesCompleted"
+                    type="number"
+                    placeholder="Enter duration in minutes"
+                  />
+                </div>
+              </div>
 
-            <p className="profile-heading">Activity Name</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioActivityName"
-                type="text"
-                placeholder="Enter an activity name (e.g. running, cycling, swimming)"
-              />
-            </p>
+              <div className="cardio-post-field">
+                <p className="cardio-heading">Intensity</p>
+                <div className="profile-text-input">
+                  <input
+                    id="cardioIntensity"
+                    type="text"
+                    placeholder="(I.e. Low, Medium, High)"
+                  />
+                </div>
+              </div>
+            </div>
 
-            <p className="profile-heading">Minutes Completed</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioMinutesCompleted"
-                type="number"
-                placeholder="Enter activity length in minutes"
-              />
-            </p>
+            <button className="edit-btn" onClick={postCardioActivity}>
+              Post
+            </button>
 
-            <p className="profile-heading">Intensity</p>
-            <p className="profile-text-input">
-              <input
-                id="cardioIntensity"
-                type="text"
-                placeholder="Enter an intensity (i.e. low, medium, high)"
-              />
-            </p>
-
-            <button className="cardio-submit-btn" onClick={postCardioActivity}>Post</button>
-          </div>
-
-          <div className="cardio-posts">
-            {cardioPosts}
+            <div className="steps-posts">{cardioPosts}</div>
           </div>
         </div>
       </div>
     );
   }
-}
+};
 
 export default Cardio;

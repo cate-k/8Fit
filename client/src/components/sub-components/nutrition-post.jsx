@@ -8,6 +8,8 @@ import EightFit from "../../abi/EightFit";
 const NutritionPost = (props) => {
   const contractProcessor = useWeb3ExecuteFunction();
 
+  const date = new Date(parseInt(BigNumber.from(props.date).toHexString())).toString('DD/mm/yy HH:mm:ss');
+
   const deleteCaloriesEatenPost = async () => {
     let options = {
       contractAddress: EightFit.address,
@@ -31,8 +33,10 @@ const NutritionPost = (props) => {
   }
 
   return (
-    <div className="nutrition-post">
-      <p>{parseInt(BigNumber.from(props.calories).toHexString())} calories {props.status} on {new Date(parseInt(BigNumber.from(props.date).toHexString())).toString('DD/mm/yy HH:mm:ss')}</p>
+    <div className="steps-post">
+      <p>{date.substring(date.indexOf(' ') + 1, date.indexOf(' ') + 12)}</p>
+
+      <p>{parseInt(BigNumber.from(props.calories).toHexString())} calories {props.status}</p>
 
       <Trash className="delete-icon" onClick={(props.status === "eaten") ? deleteCaloriesEatenPost : deleteCaloriesBurnedPost} />
     </div>

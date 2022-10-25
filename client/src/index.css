@@ -17,6 +17,7 @@
 /* Colours */
 :root {
   --colour-rich-black: #0c0c0c;
+  --colour-wedgewood: #46769b;
   --colour-lilac-bush: #a87cd4;
   --colour-blue-green: #53dfd1;
   --colour-teal: #59d7ee;
@@ -38,12 +39,26 @@ body {
   font-family: "Roboto Light";
 }
 
-h1,
-h2,
-h3 {
+h1 {
   color: var(--colour-lilac-bush);
   font-family: "Oswald";
   letter-spacing: 0.2rem;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  color: var(--colour-lilac-bush);
+  font-family: "Oswald";
+  font-weight: lighter;
+  letter-spacing: 0.1rem;
+}
+
+h3 {
+  text-align: center;
+  font-family: "Oswald";
+  font-weight: lighter;
+  letter-spacing: 0.1rem;
 }
 
 p {

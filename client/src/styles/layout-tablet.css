@@ -43,5 +43,59 @@
 
   .edit-btn {
     font-size: 1.8rem;
+    padding: 2%;
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
+  /* Fitness */
+  .fitness-links .highlighted-btn {
+    width: 80%;
+  }
+
+  .fitness-links .highlighted-btn span {
+    margin: auto;
+  }
+
+  /* Steps */
+  .steps-goal input {
+    font-size: 1.8rem;
+    width: 45%;
+  }
+
+  .steps-taken-heading {
+    margin-top: 10%;
+  }
+
+  .steps-taken input {
+    font-size: 1.8rem;
+    width: 35%;
+  }
+
+  .steps-posts {
+    margin-top: 5%;
+  }
+
+  .steps-post {
+    padding: 2%;
+  }
+
+  .steps-info {
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  /* Cardio */
+  .cardio-post-area .profile-text-input {
+    margin-bottom: 8%;
+  }
+
+  /* Nutrition */
+  .nutrition-goal input {
+    font-size: 1.8rem;
+  }
+
+  .nutrition .edit-btn {
+    margin-top: -1%;
   }
 }

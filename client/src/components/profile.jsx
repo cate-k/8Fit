@@ -18,7 +18,8 @@ const Profile = () => {
   const [toggleEdit, setToggleEdit] = useState(false);
 
   // Set the page's title
-  document.title = displayName + " | 8Fit - Track your health and fitness journey";
+  document.title =
+    displayName + " | 8Fit - Track your health and fitness journey";
 
   useEffect(() => {
     const init = async () => {
@@ -113,22 +114,25 @@ const Profile = () => {
 
   const editProfileDetails = () => {
     setToggleEdit(true);
-  }
+  };
 
   const exitEditProfileDetails = () => {
     setToggleEdit(false);
-  }
+  };
 
   const saveDisplayName = async () => {
     // Prevent the user from going under or over the character limit for the display name
-    if (document.getElementById("displayName").value.length > 0 && document.getElementById("displayName").value.length <= 30) {
+    if (
+      document.getElementById("displayName").value.length > 0 &&
+      document.getElementById("displayName").value.length <= 30
+    ) {
       let options = {
         contractAddress: Storage.address,
         functionName: "changeDisplayName",
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newDisplayName: document.getElementById("displayName").value
+          newDisplayName: document.getElementById("displayName").value,
         },
       };
 
@@ -155,10 +159,10 @@ const Profile = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newAge: document.getElementById("age").value
+          newAge: document.getElementById("age").value,
         },
       };
-      
+
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (age) => {
@@ -180,7 +184,7 @@ const Profile = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newGender: document.getElementById("gender").value
+          newGender: document.getElementById("gender").value,
         },
       };
 
@@ -205,7 +209,7 @@ const Profile = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newHeight: document.getElementById("height").value
+          newHeight: document.getElementById("height").value,
         },
       };
 
@@ -230,7 +234,7 @@ const Profile = () => {
         abi: Storage.abi,
         params: {
           userAddress: account,
-          newWeight: document.getElementById("weight").value
+          newWeight: document.getElementById("weight").value,
         },
       };
 
@@ -257,56 +261,38 @@ const Profile = () => {
           <h1>Profile</h1>
 
           <p className="profile-heading">Display Name</p>
-          <p className="profile-text-input">
-            <input
-              id="displayName"
-              type="text"
-              placeholder={displayName}
-            />
+          <div className="profile-text-input">
+            <input id="displayName" type="text" placeholder={displayName} />
             <Check className="save-icon" onClick={saveDisplayName} />
-          </p>
+          </div>
 
           <p className="profile-heading">Age</p>
-          <p className="profile-text-input">
-            <input
-              id="age"
-              type="number"
-              placeholder={age}
-            />
+          <div className="profile-text-input">
+            <input id="age" type="number" placeholder={age} />
             <Check className="save-icon" onClick={saveAge} />
-          </p>
+          </div>
 
           <p className="profile-heading">Gender</p>
-          <p className="profile-text-input">
-            <input
-              id="gender"
-              type="text"
-              placeholder="Enter your gender"
-            />
+          <div className="profile-text-input">
+            <input id="gender" type="text" placeholder="Enter your gender" />
             <Check className="save-icon" onClick={saveGender} />
-          </p>
+          </div>
 
           <p className="profile-heading">Height (in cm)</p>
-          <p className="profile-text-input">
-            <input
-              id="height"
-              type="number"
-              placeholder={height}
-            />
+          <div className="profile-text-input">
+            <input id="height" type="number" placeholder={height} />
             <Check className="save-icon" onClick={saveHeight} />
-          </p>
+          </div>
 
           <p className="profile-heading">Weight (in kg)</p>
           <p className="profile-text-input last">
-            <input
-              id="weight"
-              type="number"
-              placeholder={weight}
-            />
+            <input id="weight" type="number" placeholder={weight} />
             <Check className="save-icon" onClick={saveWeight} />
           </p>
 
-          <button className="edit-btn" onClick={exitEditProfileDetails}>Exit</button>
+          <button className="edit-btn" onClick={exitEditProfileDetails}>
+            Exit
+          </button>
         </div>
       </div>
     );
@@ -319,25 +305,27 @@ const Profile = () => {
           <h1>Profile</h1>
 
           <p className="profile-heading">Display Name</p>
-          <p>{displayName}</p>
+          <p className="profile-info">{displayName}</p>
 
           <p className="profile-heading">Age</p>
-          <p>{parseInt(BigNumber.from(age).toHexString())}</p>
+          <p className="profile-info">{parseInt(BigNumber.from(age).toHexString())}</p>
 
           <p className="profile-heading">Gender</p>
-          <p>{gender}</p>
+          <p className="profile-info">{gender}</p>
 
           <p className="profile-heading">Height (in cm)</p>
-          <p>{parseInt(BigNumber.from(height).toHexString())}</p>
+          <p className="profile-info">{parseInt(BigNumber.from(height).toHexString())}</p>
 
           <p className="profile-heading">Weight (in kg)</p>
-          <p>{parseInt(BigNumber.from(weight).toHexString())}</p>
+          <p className="profile-info">{parseInt(BigNumber.from(weight).toHexString())}</p>
 
-          <button className="edit-btn" onClick={editProfileDetails}>Edit Profile Details</button>
+          <button className="edit-btn" onClick={editProfileDetails}>
+            Edit Profile Details
+          </button>
         </div>
       </div>
     );
   }
-}
+};
 
 export default Profile;
