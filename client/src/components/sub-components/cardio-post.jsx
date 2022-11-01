@@ -22,12 +22,22 @@ const CardioPost = (props) => {
   }, [account]);
 
   const deleteCardioPost = async () => {
-    // Delete the post
     let options = {
       contractAddress: EightFit.address,
       functionName: "deleteCardioPost",
       abi: EightFit.abi,
       params: { cardioPostId: props.id },
+    };
+
+    await contractProcessor.fetch({ params: options });
+  }
+
+  const deleteWellbeingPost = async () => {
+    let options = {
+      contractAddress: EightFit.address,
+      functionName: "deleteWellbeingPost",
+      abi: EightFit.abi,
+      params: { wellbeingPostId: props.id },
     };
 
     await contractProcessor.fetch({ params: options });
@@ -43,7 +53,7 @@ const CardioPost = (props) => {
 
       <p>{props.intensity}</p>
 
-      <Trash className="delete-icon" onClick={deleteCardioPost} />
+      <Trash className="delete-icon" onClick={(props.status === "Cardio") ? deleteCardioPost : deleteWellbeingPost} />
     </div>
   );
 }

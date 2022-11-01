@@ -180,4 +180,9 @@
     margin-top: -2%;
     margin-bottom: 5%;
   }
+
+  /* Wellbeing */
+  .cardio .steps-info {
+    margin-right: 20% !important;
+  }
 }

@@ -91,6 +91,7 @@ const Cardio = () => {
                       minutesCompleted={cardioPost.minutesCompleted}
                       intensity={cardioPost.intensity}
                       date={cardioPost.date}
+                      status="Cardio"
                     />
                   );
                 }
