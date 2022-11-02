@@ -13,6 +13,12 @@
     margin-top: 30%;
   }
 
+  /* Dashboard */
+  .progress-circle-container {
+    height: 60%;
+    width: 60%;
+  }
+
   /* Fitness */
   .fitness-links .highlighted-btn {
     width: 60%;

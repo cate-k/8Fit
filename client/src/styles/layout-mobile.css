@@ -222,6 +222,21 @@
   transition: all 0.5s;
 }
 
+/* Dashboard */
+.progress-circle-container {
+  height: 90%;
+  width: 90%;
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 15%;
+}
+
+.progress-circle {
+  font-size: 1.4rem;
+  width: 50%;
+  text-align: center;
+}
+
 /* Fitness */
 .fitness-links .highlighted-btn {
   width: 18rem;

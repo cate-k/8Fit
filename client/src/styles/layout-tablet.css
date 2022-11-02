@@ -48,6 +48,16 @@
     padding-right: 8%;
   }
 
+  /* Dashboard */
+  .progress-circle-container {
+    height: 85%;
+    width: 85%;
+  }
+
+  .progress-circle {
+    font-size: 1.8rem;
+  }
+
   /* Fitness */
   .fitness-links .highlighted-btn {
     width: 80%;
