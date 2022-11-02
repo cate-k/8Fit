@@ -94,16 +94,34 @@ const Profile = () => {
       // Fetch the user's weight
       options = {
         contractAddress: Storage.address,
-        functionName: "getWeight",
+        functionName: "getWeightCount",
         abi: Storage.abi,
         params: { userAddress: account },
       };
 
       await contractProcessor.fetch({
         params: options,
-        onSuccess: async (weight) => {
-          if (weight !== "") {
-            setWeight(weight);
+        onSuccess: async (weightLogCount) => {
+          for (let weightLogIndex = 0; weightLogIndex < weightLogCount; weightLogIndex++) {
+            options = {
+              contractAddress: Storage.address,
+              functionName: "getWeight",
+              abi: Storage.abi,
+              params: {
+                userAddress: account,
+                index: weightLogIndex
+              },
+            };
+
+            await contractProcessor.fetch({
+              params: options,
+              onSuccess: (weightLog) => {
+                // Display the user's current weight
+                if (weightLogIndex === (weightLogCount - 1)) {
+                  setWeight(weightLog);
+                }
+              },
+            });
           }
         },
       });
