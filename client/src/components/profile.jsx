@@ -94,7 +94,7 @@ const Profile = () => {
       // Fetch the user's weight
       options = {
         contractAddress: Storage.address,
-        functionName: "getWeightCount",
+        functionName: "getWeightCountCount",
         abi: Storage.abi,
         params: { userAddress: account },
       };
