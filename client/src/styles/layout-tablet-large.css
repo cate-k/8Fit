@@ -53,4 +53,9 @@
   .nutrition-goal {
     width: 50%;
   }
+
+  /* Wellbeing */
+  .cardio .steps-info {
+    margin-right: 15% !important;
+  }
 }

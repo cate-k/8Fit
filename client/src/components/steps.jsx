@@ -96,6 +96,7 @@ const Fitness = () => {
                       userAddress={stepsPost.userAddress}
                       activityLength={stepsPost.activityLength}
                       date={stepsPost.date}
+                      status="steps"
                     />
                   );
                 }

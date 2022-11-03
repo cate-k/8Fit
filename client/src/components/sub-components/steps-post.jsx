@@ -11,7 +11,6 @@ const StepsPost = (props) => {
   const date = new Date(parseInt(BigNumber.from(props.date).toHexString())).toString('DD/mm/yy HH:mm:ss');
 
   const deleteStepsPost = async () => {
-    // Delete the post
     let options = {
       contractAddress: EightFit.address,
       functionName: "deleteDailyStepCountPost",
@@ -22,13 +21,24 @@ const StepsPost = (props) => {
     await contractProcessor.fetch({ params: options });
   }
 
+  const deleteSleepPost = async () => {
+    let options = {
+      contractAddress: EightFit.address,
+      functionName: "deleteSleepPost",
+      abi: EightFit.abi,
+      params: { sleepPostId: props.id },
+    };
+
+    await contractProcessor.fetch({ params: options });
+  }
+
   return (
     <div className="steps-post">
       <p>{date.substring(date.indexOf(' ') + 1, date.indexOf(' ') + 12)}</p>
 
-      <p className="steps-info">{parseInt(BigNumber.from(props.activityLength).toHexString())} steps</p>
+      <p className="steps-info">{parseInt(BigNumber.from(props.activityLength).toHexString())} {props.status}</p>
 
-      <Trash className="delete-icon" onClick={deleteStepsPost} />
+      <Trash className="delete-icon" onClick={(props.status === "steps") ? deleteStepsPost : deleteSleepPost} />
     </div>
   );
 }
