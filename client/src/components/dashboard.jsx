@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BigNumber } from "ethers";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
-import { Zap } from "react-feather";
 import { buildStyles, CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
@@ -23,6 +22,8 @@ const Dashboard = () => {
   const [wellbeingActivity, setWellbeingActivity] = useState(0);
   const [dailyWellbeingGoal, setDailyWellbeingGoal] = useState(0);
   const [points, setPoints] = useState(0);
+  const [pointsGoal, setPointsGoal] = useState(100);
+  const [level, setLevel] = useState(0);
 
   // Set the page's title
   document.title = "Dashboard | 8Fit - Track your health and fitness journey";
@@ -59,9 +60,19 @@ const Dashboard = () => {
 
       await contractProcessor.fetch({
         params: options,
-        onSuccess: async (points) => {
-          if (points !== "") {
-            setPoints(parseInt(BigNumber.from(points).toHexString()));
+        onSuccess: (pointsReturned) => {
+          if (pointsReturned !== "") {
+            setPoints(parseInt(BigNumber.from(pointsReturned).toHexString()));
+
+            // Calculate the user's next XP goal
+            if (points >= pointsGoal) {
+              let currentPoints = points.toString().substring(0, 1);
+
+              setPointsGoal((parseInt(currentPoints) + 1) * 100);
+            }
+
+            // Initialise the user's current level based on XP goal
+            setLevel(parseInt(pointsGoal.toString().substring(0, 1)));
           }
         },
       });
@@ -225,7 +236,7 @@ const Dashboard = () => {
     };
 
     init();
-  }, [account]);
+  }, [account, points, pointsGoal]);
 
   return (
     <div className="page">
@@ -235,9 +246,11 @@ const Dashboard = () => {
         <h1>{welcomeMessage}</h1>
         <div className="points-progress">
           <ProgressBar
-            percent={(points / 100) * 100}
-            filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
+            percent={(points / pointsGoal) * 100}
+            filledBackground="linear-gradient(to right, #53dfd1, #a87cd4)"
           />
+          <span>{points} / {pointsGoal} XP</span>
+          <span className="level">Level {level}</span>
         </div>
 
         <div className="progress-circles">
