@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { BigNumber } from "ethers";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
 import { Zap } from "react-feather";
-import { buildStyles, CircularProgressbarWithChildren } from "react-circular-progressbar";
+import {
+  buildStyles,
+  CircularProgressbarWithChildren,
+} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
@@ -23,6 +26,11 @@ const Dashboard = () => {
   const [wellbeingActivity, setWellbeingActivity] = useState(0);
   const [dailyWellbeingGoal, setDailyWellbeingGoal] = useState(0);
   const [points, setPoints] = useState(0);
+  const [cardioActivityBadge, setCardioActivityBadge] = useState(false);
+  const [strengthActivityBadge, setStrengthActivityBadge] = useState(false);
+  const [wellbeingActivityBadge, setWellbeingActivityBadge] = useState(false);
+  const [weightTargetBadge, setWeightTargetBadge] = useState(false);
+  const [sleepTargetBadge, setSleepTargetBadge] = useState(false);
 
   // Set the page's title
   document.title = "Dashboard | 8Fit - Track your health and fitness journey";
@@ -93,10 +101,17 @@ const Dashboard = () => {
               onSuccess: (stepsPost) => {
                 // Check if the log is from today
                 if (
-                  stepsPost.userAddress.toLowerCase() === account.toLowerCase() &&
-                  Date(parseInt(BigNumber.from(stepsPost.date).toHexString())).toString('DD/mm/yy HH:mm:ss') === date
+                  stepsPost.userAddress.toLowerCase() ===
+                    account.toLowerCase() &&
+                  Date(
+                    parseInt(BigNumber.from(stepsPost.date).toHexString())
+                  ).toString("DD/mm/yy HH:mm:ss") === date
                 ) {
-                  setStepsTaken(parseInt(BigNumber.from(stepsPost.activityLength).toHexString()));
+                  setStepsTaken(
+                    parseInt(
+                      BigNumber.from(stepsPost.activityLength).toHexString()
+                    )
+                  );
                 }
               },
             });
@@ -116,7 +131,9 @@ const Dashboard = () => {
         params: options,
         onSuccess: async (dailyStepGoal) => {
           if (dailyStepGoal !== "") {
-            setDailyStepsTakenGoal(parseInt(BigNumber.from(dailyStepGoal).toHexString()));
+            setDailyStepsTakenGoal(
+              parseInt(BigNumber.from(dailyStepGoal).toHexString())
+            );
           }
         },
       });
@@ -131,7 +148,11 @@ const Dashboard = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalCardioPostsCreated) => {
-          for (let cardioPostsIndex = 0; cardioPostsIndex < totalCardioPostsCreated; cardioPostsIndex++) {
+          for (
+            let cardioPostsIndex = 0;
+            cardioPostsIndex < totalCardioPostsCreated;
+            cardioPostsIndex++
+          ) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getCardioPost",
@@ -144,10 +165,17 @@ const Dashboard = () => {
               onSuccess: (cardioPost) => {
                 // Check if the log is from today
                 if (
-                  cardioPost.userAddress.toLowerCase() === account.toLowerCase() &&
-                  Date(parseInt(BigNumber.from(cardioPost.date).toHexString())).toString('DD/mm/yy HH:mm:ss') === date
+                  cardioPost.userAddress.toLowerCase() ===
+                    account.toLowerCase() &&
+                  Date(
+                    parseInt(BigNumber.from(cardioPost.date).toHexString())
+                  ).toString("DD/mm/yy HH:mm:ss") === date
                 ) {
-                  setCardioActivity(parseInt(BigNumber.from(cardioPost.activityLength).toHexString()));
+                  setCardioActivity(
+                    parseInt(
+                      BigNumber.from(cardioPost.activityLength).toHexString()
+                    )
+                  );
                 }
               },
             });
@@ -167,7 +195,9 @@ const Dashboard = () => {
         params: options,
         onSuccess: async (dailyCardioGoal) => {
           if (dailyCardioGoal !== "") {
-            setDailyCardioActivityGoal(parseInt(BigNumber.from(dailyCardioGoal).toHexString()));
+            setDailyCardioActivityGoal(
+              parseInt(BigNumber.from(dailyCardioGoal).toHexString())
+            );
           }
         },
       });
@@ -182,7 +212,11 @@ const Dashboard = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalWellbeingPostsCreated) => {
-          for (let wellbeingPostsIndex = 0; wellbeingPostsIndex < totalWellbeingPostsCreated; wellbeingPostsIndex++) {
+          for (
+            let wellbeingPostsIndex = 0;
+            wellbeingPostsIndex < totalWellbeingPostsCreated;
+            wellbeingPostsIndex++
+          ) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getWellbeingPost",
@@ -195,10 +229,17 @@ const Dashboard = () => {
               onSuccess: (wellbeingPost) => {
                 // Check if the log is from today
                 if (
-                  wellbeingPost.userAddress.toLowerCase() === account.toLowerCase() &&
-                  Date(parseInt(BigNumber.from(wellbeingPost.date).toHexString())).toString('DD/mm/yy HH:mm:ss') === date
+                  wellbeingPost.userAddress.toLowerCase() ===
+                    account.toLowerCase() &&
+                  Date(
+                    parseInt(BigNumber.from(wellbeingPost.date).toHexString())
+                  ).toString("DD/mm/yy HH:mm:ss") === date
                 ) {
-                  setWellbeingActivity(parseInt(BigNumber.from(wellbeingPost.activityLength).toHexString()));
+                  setWellbeingActivity(
+                    parseInt(
+                      BigNumber.from(wellbeingPost.activityLength).toHexString()
+                    )
+                  );
                 }
               },
             });
@@ -218,8 +259,305 @@ const Dashboard = () => {
         params: options,
         onSuccess: async (dailyWellbeingGoal) => {
           if (dailyWellbeingGoal !== "") {
-            setDailyWellbeingGoal(parseInt(BigNumber.from(dailyWellbeingGoal).toHexString()));
+            setDailyWellbeingGoal(
+              parseInt(BigNumber.from(dailyWellbeingGoal).toHexString())
+            );
           }
+        },
+      });
+
+      // Award the user badges
+
+      // Badge 1 - Cardio Fanatic (logged 5 or more cardio activities in total)
+      // Fetch the total number of cardio activities the user has
+      options = {
+        contractAddress: EightFit.address,
+        functionName: "getCardioPostsCount",
+        abi: EightFit.abi,
+      };
+
+      await contractProcessor.fetch({
+        params: options,
+        onSuccess: async (totalCardioPostsCreated) => {
+          let userCardioPostsCount = 0;
+          for (
+            let cardioPostsIndex = 0;
+            cardioPostsIndex < totalCardioPostsCreated;
+            cardioPostsIndex++
+          ) {
+            options = {
+              contractAddress: EightFit.address,
+              functionName: "getCardioPost",
+              abi: EightFit.abi,
+              params: { cardioPostId: cardioPostsIndex + 1 },
+            };
+
+            await contractProcessor.fetch({
+              params: options,
+              onSuccess: (cardioPost) => {
+                // Check if the log is belongs to the user
+                if (
+                  cardioPost.userAddress.toLowerCase() === account.toLowerCase()
+                ) {
+                  // increment cardio post count for the user
+                  userCardioPostsCount++;
+                  // check if posts count >= 5
+                  if (userCardioPostsCount >= 5) {
+                    // set badge to true
+                    setCardioActivityBadge(true);
+                  }
+                }
+              },
+            });
+          }
+        },
+      });
+
+      // Badge 2 - Gym Junkie (logged 5 or more strength sessions in total)
+      // Fetch the total number of Strength activities that the user has
+      options = {
+        contractAddress: EightFit.address,
+        functionName: "getStrengthTrainingPostsCount",
+        abi: EightFit.abi,
+      };
+
+      await contractProcessor.fetch({
+        params: options,
+        onSuccess: async (totalStrengthTrainingPostsCreated) => {
+          let userStrengthTrainingPostsCount = 0;
+          for (
+            let strengthTrainingPostsIndex = 0;
+            strengthTrainingPostsIndex < totalStrengthTrainingPostsCreated;
+            strengthTrainingPostsIndex++
+          ) {
+            options = {
+              contractAddress: EightFit.address,
+              functionName: "getStrengthTrainingPost",
+              abi: EightFit.abi,
+              params: {
+                strengthTrainingPostId: strengthTrainingPostsIndex + 1,
+              },
+            };
+
+            await contractProcessor.fetch({
+              params: options,
+              onSuccess: (strengthTrainingPost) => {
+                //check if the post belongs to the current user
+                if (
+                  strengthTrainingPost.userAddress.toLowerCase() ===
+                  account.toLowerCase()
+                ) {
+                  // increment strength training post count for the user
+                  userStrengthTrainingPostsCount++;
+                  // if 5 or more strength training posts, award badge
+                  if (userStrengthTrainingPostsCount >= 5) {
+                    // set badge to true
+                    setStrengthActivityBadge(true);
+                  }
+                }
+              },
+            });
+          }
+        },
+      });
+
+      // Badge 3 - Zen (logged 5 or more wellbeing sessions in total)
+      options = {
+        contractAddress: EightFit.address,
+        functionName: "getWellbeingPostsCount",
+        abi: EightFit.abi,
+      };
+
+      await contractProcessor.fetch({
+        params: options,
+        onSuccess: async (totalWellbeingPostsCreated) => {
+          let userWellbeingPostsCount = 0;
+          for (
+            let wellbeingPostsIndex = 0;
+            wellbeingPostsIndex < totalWellbeingPostsCreated;
+            wellbeingPostsIndex++
+          ) {
+            options = {
+              contractAddress: EightFit.address,
+              functionName: "getWellbeingPost",
+              abi: EightFit.abi,
+              params: {
+                wellbeingPostId: wellbeingPostsIndex + 1,
+              },
+            };
+
+            await contractProcessor.fetch({
+              params: options,
+              onSuccess: (wellbeingPost) => {
+                //check if the post belongs to the current user
+                if (
+                  wellbeingPost.userAddress.toLowerCase() ===
+                  account.toLowerCase()
+                ) {
+                  // increment wellbeing post count for the user
+                  userWellbeingPostsCount++;
+                  // if 5 or more strength training posts, award badge
+                  if (userWellbeingPostsCount >= 5) {
+                    // set badge to true
+                    setWellbeingActivityBadge(true);
+                  }
+                }
+              },
+            });
+          }
+        },
+      });
+
+      // Badge 4 - Dreamer (reached weekly sleep goal)
+      // Get count for all sleep logs
+      options = {
+        contractAddress: EightFit.address,
+        functionName: "getSleepPostsCount",
+        abi: EightFit.abi,
+      };
+
+      await contractProcessor.fetch({
+        params: options,
+        onSuccess: async (totalSleepPostsCreated) => {
+          // declare an array to store all of the sleep posts for one user
+          let userSleepPostsArr = [];
+          // variable to track total sleep for last 7 sleep posts
+          let userTotalSleepInSevenPosts = 0;
+          // loop through each of the posts
+          for (
+            let sleepPostsIndex = 0;
+            sleepPostsIndex < totalSleepPostsCreated;
+            sleepPostsIndex++
+          ) {
+            // get the sleep post for the current loop
+            options = {
+              contractAddress: EightFit.address,
+              functionName: "getSleepPost",
+              abi: EightFit.abi,
+              params: {
+                sleepPostId: sleepPostsIndex + 1,
+              },
+            };
+
+            await contractProcessor.fetch({
+              params: options,
+              onSuccess: async (sleepPost) => {
+                // check if the post belongs to the current user
+                if (
+                  sleepPost.userAddress.toLowerCase() === account.toLowerCase()
+                ) {
+                  // push the post to the users sleep posts array
+                  userSleepPostsArr.push(sleepPost);
+                }
+              },
+            });
+          }
+
+          // if the length of the sleepPostsArr <= 7 get the total
+          if (userSleepPostsArr.length <= 7) {
+            for (
+              let userSleepPostsIndex = 0;
+              userSleepPostsIndex < userSleepPostsArr.length;
+              userSleepPostsIndex++
+            ) {
+              userTotalSleepInSevenPosts += parseInt(
+                userSleepPostsArr[userSleepPostsIndex].activityLength
+              );
+            }
+          } else {
+            let lastSevenSleepPosts = userSleepPostsArr.slice(-7);
+            for (
+              let userSleepPostsIndex = 0;
+              userSleepPostsIndex < lastSevenSleepPosts.length;
+              userSleepPostsIndex++
+            ) {
+              userTotalSleepInSevenPosts += parseInt(
+                lastSevenSleepPosts[userSleepPostsIndex].activityLength
+              );
+            }
+          }
+
+          // Fetch the users weekly sleep goal
+          options = {
+            contractAddress: Storage.address,
+            functionName: "getWeeklySleepGoal",
+            abi: Storage.abi,
+            params: { userAddress: account },
+          };
+
+          await contractProcessor.fetch({
+            params: options,
+            onSuccess: async (userWeeklySleepGoal) => {
+              // set badge to true if sleep goal is met
+              if (
+                userTotalSleepInSevenPosts >= userWeeklySleepGoal &&
+                userWeeklySleepGoal > 0
+              ) {
+                setSleepTargetBadge(true);
+              }
+            },
+          });
+        },
+      });
+
+      // Badge 5 - Fine Diner (user is at their bodyweight goal +-3%
+      // Fetch the user's weight
+      options = {
+        contractAddress: Storage.address,
+        functionName: "getWeightCount",
+        abi: Storage.abi,
+        params: { userAddress: account },
+      };
+
+      await contractProcessor.fetch({
+        params: options,
+        onSuccess: async (weightLogCount) => {
+          let userCurrentWeight = 0;
+          for (
+            let weightLogIndex = 0;
+            weightLogIndex < weightLogCount;
+            weightLogIndex++
+          ) {
+            options = {
+              contractAddress: Storage.address,
+              functionName: "getWeight",
+              abi: Storage.abi,
+              params: {
+                userAddress: account,
+                index: weightLogIndex,
+              },
+            };
+
+            await contractProcessor.fetch({
+              params: options,
+              onSuccess: (weightLog) => {
+                // Get the user's current weight
+                if (weightLogIndex === weightLogCount - 1) {
+                  userCurrentWeight = weightLog;
+                }
+              },
+            });
+          }
+
+          // Fetch users goal weight
+          options = {
+            contractAddress: Storage.address,
+            functionName: "getWeightGoal",
+            abi: Storage.abi,
+            params: { userAddress: account },
+          };
+
+          await contractProcessor.fetch({
+            params: options,
+            onSuccess: (goalWeight) => {
+              if (
+                userCurrentWeight >= goalWeight * 0.97 &&
+                userCurrentWeight <= goalWeight * 1.03
+              ) {
+                setWeightTargetBadge(true);
+              }
+            },
+          });
         },
       });
     };
@@ -249,7 +587,8 @@ const Dashboard = () => {
               })}
             >
               <div className="progress-circle">
-                <strong>{stepsTaken}</strong> out of <strong>{dailyStepsTakenGoal}</strong> steps taken today
+                <strong>{stepsTaken}</strong> out of{" "}
+                <strong>{dailyStepsTakenGoal}</strong> steps taken today
               </div>
             </CircularProgressbarWithChildren>
           </div>
@@ -262,7 +601,9 @@ const Dashboard = () => {
               })}
             >
               <div className="progress-circle">
-                <strong>{cardioActivity}</strong> out of <strong>{dailyCardioActivityGoal}</strong> minutes of cardio today
+                <strong>{cardioActivity}</strong> out of{" "}
+                <strong>{dailyCardioActivityGoal}</strong> minutes of cardio
+                today
               </div>
             </CircularProgressbarWithChildren>
           </div>
@@ -275,16 +616,58 @@ const Dashboard = () => {
               })}
             >
               <div className="progress-circle">
-                <strong>{wellbeingActivity}</strong> out of <strong>{dailyWellbeingGoal}</strong> minutes of wellbeing activity today
+                <strong>{wellbeingActivity}</strong> out of{" "}
+                <strong>{dailyWellbeingGoal}</strong> minutes of wellbeing
+                activity today
               </div>
             </CircularProgressbarWithChildren>
           </div>
         </div>
 
         <h2>Achievements</h2>
+
+        <div
+          className={
+            "default-badge " + (cardioActivityBadge ? "earned-badge" : "")
+          }
+        >
+          CardioBadge
+        </div>
+
+        <div
+          className={
+            "default-badge " + (strengthActivityBadge ? "earned-badge" : "")
+          }
+        >
+          StrengthBadge
+        </div>
+
+        <div
+          className={
+            "default-badge " + (wellbeingActivityBadge ? "earned-badge" : "")
+          }
+        >
+          WellbeingBadge
+        </div>
+
+        <div
+          className={
+            "default-badge " + (weightTargetBadge ? "earned-badge" : "")
+          }
+        >
+          WeightBadge
+        </div>
+
+        <div
+          className={
+            "default-badge " + (sleepTargetBadge ? "earned-badge" : "")
+          }
+        >
+          SleepBadge
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;

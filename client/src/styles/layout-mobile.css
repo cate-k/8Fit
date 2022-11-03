@@ -380,3 +380,12 @@
   margin-top: 0;
   margin-bottom: 3%;
 }
+
+/* Badge Classes */
+.default-badge {
+  color: grey;
+}
+
+.earned-badge {
+  color: green;
+}
