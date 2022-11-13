@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BigNumber } from "ethers";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
-import {
-  buildStyles,
-  CircularProgressbarWithChildren,
-} from "react-circular-progressbar";
+import { buildStyles, CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
@@ -39,7 +36,9 @@ const Dashboard = () => {
   useEffect(() => {
     const init = async () => {
       // Initialise the date
-      const date = new Date().getTime();
+      const dateToday = (new Date()).getTime();
+      let date = new Date(parseInt(BigNumber.from(dateToday).toHexString())).toString('DD/mm/yy HH:mm:ss');
+      date = date.substring(date.indexOf(' ') + 1, date.indexOf(' ') + 12);
 
       // Fetch the user's display name
       let options = {
@@ -95,11 +94,7 @@ const Dashboard = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalStepsPostsCreated) => {
-          for (
-            let stepsPostsIndex = 0;
-            stepsPostsIndex < totalStepsPostsCreated;
-            stepsPostsIndex++
-          ) {
+          for (let stepsPostsIndex = 0; stepsPostsIndex < totalStepsPostsCreated; stepsPostsIndex++) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getStepsPost",
@@ -110,19 +105,16 @@ const Dashboard = () => {
             await contractProcessor.fetch({
               params: options,
               onSuccess: (stepsPost) => {
+                // Parse the post's date to make the format the same as today's date
+                let postDate = Date(parseInt(BigNumber.from(stepsPost.date).toHexString())).toString('DD/mm/yy HH:mm:ss');
+                postDate = postDate.substring(postDate.indexOf(' ') + 1, postDate.indexOf(' ') + 12);
+
                 // Check if the log is from today
                 if (
-                  stepsPost.userAddress.toLowerCase() ===
-                    account.toLowerCase() &&
-                  Date(
-                    parseInt(BigNumber.from(stepsPost.date).toHexString())
-                  ).toString("DD/mm/yy HH:mm:ss") === date
+                  stepsPost.userAddress.toLowerCase() === account.toLowerCase() &&
+                  postDate === date
                 ) {
-                  setStepsTaken(
-                    parseInt(
-                      BigNumber.from(stepsPost.activityLength).toHexString()
-                    )
-                  );
+                  setStepsTaken(parseInt(BigNumber.from(stepsPost.activityLength).toHexString()));
                 }
               },
             });
@@ -142,9 +134,7 @@ const Dashboard = () => {
         params: options,
         onSuccess: async (dailyStepGoal) => {
           if (dailyStepGoal !== "") {
-            setDailyStepsTakenGoal(
-              parseInt(BigNumber.from(dailyStepGoal).toHexString())
-            );
+            setDailyStepsTakenGoal(parseInt(BigNumber.from(dailyStepGoal).toHexString()));
           }
         },
       });
@@ -159,11 +149,7 @@ const Dashboard = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalCardioPostsCreated) => {
-          for (
-            let cardioPostsIndex = 0;
-            cardioPostsIndex < totalCardioPostsCreated;
-            cardioPostsIndex++
-          ) {
+          for (let cardioPostsIndex = 0; cardioPostsIndex < totalCardioPostsCreated; cardioPostsIndex++) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getCardioPost",
@@ -174,19 +160,16 @@ const Dashboard = () => {
             await contractProcessor.fetch({
               params: options,
               onSuccess: (cardioPost) => {
+                // Parse the post's date to make the format the same as today's date
+                let postDate = Date(parseInt(BigNumber.from(cardioPost.date).toHexString())).toString('DD/mm/yy HH:mm:ss');
+                postDate = postDate.substring(postDate.indexOf(' ') + 1, postDate.indexOf(' ') + 12);
+
                 // Check if the log is from today
                 if (
-                  cardioPost.userAddress.toLowerCase() ===
-                    account.toLowerCase() &&
-                  Date(
-                    parseInt(BigNumber.from(cardioPost.date).toHexString())
-                  ).toString("DD/mm/yy HH:mm:ss") === date
+                  cardioPost.userAddress.toLowerCase() === account.toLowerCase() &&
+                  postDate === date
                 ) {
-                  setCardioActivity(
-                    parseInt(
-                      BigNumber.from(cardioPost.activityLength).toHexString()
-                    )
-                  );
+                  setCardioActivity(parseInt(BigNumber.from(cardioPost.minutesCompleted).toHexString()));
                 }
               },
             });
@@ -223,11 +206,7 @@ const Dashboard = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalWellbeingPostsCreated) => {
-          for (
-            let wellbeingPostsIndex = 0;
-            wellbeingPostsIndex < totalWellbeingPostsCreated;
-            wellbeingPostsIndex++
-          ) {
+          for (let wellbeingPostsIndex = 0; wellbeingPostsIndex < totalWellbeingPostsCreated; wellbeingPostsIndex++) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getWellbeingPost",
@@ -238,19 +217,16 @@ const Dashboard = () => {
             await contractProcessor.fetch({
               params: options,
               onSuccess: (wellbeingPost) => {
+                // Parse the post's date to make the format the same as today's date
+                let postDate = Date(parseInt(BigNumber.from(wellbeingPost.date).toHexString())).toString('DD/mm/yy HH:mm:ss');
+                postDate = postDate.substring(postDate.indexOf(' ') + 1, postDate.indexOf(' ') + 12);
+
                 // Check if the log is from today
                 if (
-                  wellbeingPost.userAddress.toLowerCase() ===
-                    account.toLowerCase() &&
-                  Date(
-                    parseInt(BigNumber.from(wellbeingPost.date).toHexString())
-                  ).toString("DD/mm/yy HH:mm:ss") === date
+                  wellbeingPost.userAddress.toLowerCase() === account.toLowerCase() &&
+                  postDate === date
                 ) {
-                  setWellbeingActivity(
-                    parseInt(
-                      BigNumber.from(wellbeingPost.activityLength).toHexString()
-                    )
-                  );
+                  setWellbeingActivity(parseInt(BigNumber.from(wellbeingPost.minutesCompleted).toHexString()));
                 }
               },
             });
@@ -277,8 +253,6 @@ const Dashboard = () => {
         },
       });
 
-      // Award the user badges
-
       // Badge 1 - Cardio Fanatic (logged 5 or more cardio activities in total)
       // Fetch the total number of cardio activities the user has
       options = {
@@ -291,11 +265,7 @@ const Dashboard = () => {
         params: options,
         onSuccess: async (totalCardioPostsCreated) => {
           let userCardioPostsCount = 0;
-          for (
-            let cardioPostsIndex = 0;
-            cardioPostsIndex < totalCardioPostsCreated;
-            cardioPostsIndex++
-          ) {
+          for (let cardioPostsIndex = 0; cardioPostsIndex < totalCardioPostsCreated; cardioPostsIndex++) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getCardioPost",
@@ -306,15 +276,11 @@ const Dashboard = () => {
             await contractProcessor.fetch({
               params: options,
               onSuccess: (cardioPost) => {
-                // Check if the log is belongs to the user
-                if (
-                  cardioPost.userAddress.toLowerCase() === account.toLowerCase()
-                ) {
-                  // increment cardio post count for the user
+                // Check if the log belongs to the user
+                if (cardioPost.userAddress.toLowerCase() === account.toLowerCase()) {
                   userCardioPostsCount++;
-                  // check if posts count >= 5
+
                   if (userCardioPostsCount >= 5) {
-                    // set badge to true
                     setCardioActivityBadge(true);
                   }
                 }
@@ -336,11 +302,7 @@ const Dashboard = () => {
         params: options,
         onSuccess: async (totalStrengthTrainingPostsCreated) => {
           let userStrengthTrainingPostsCount = 0;
-          for (
-            let strengthTrainingPostsIndex = 0;
-            strengthTrainingPostsIndex < totalStrengthTrainingPostsCreated;
-            strengthTrainingPostsIndex++
-          ) {
+          for (let strengthTrainingPostsIndex = 0; strengthTrainingPostsIndex < totalStrengthTrainingPostsCreated; strengthTrainingPostsIndex++) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getStrengthTrainingPost",
@@ -353,16 +315,12 @@ const Dashboard = () => {
             await contractProcessor.fetch({
               params: options,
               onSuccess: (strengthTrainingPost) => {
-                //check if the post belongs to the current user
-                if (
-                  strengthTrainingPost.userAddress.toLowerCase() ===
-                  account.toLowerCase()
-                ) {
-                  // increment strength training post count for the user
+                // Check if the post belongs to the current user
+                if (strengthTrainingPost.userAddress.toLowerCase() === account.toLowerCase()) {
                   userStrengthTrainingPostsCount++;
-                  // if 5 or more strength training posts, award badge
+
+                  // If the user has 5 or more strength training posts, award badge
                   if (userStrengthTrainingPostsCount >= 5) {
-                    // set badge to true
                     setStrengthActivityBadge(true);
                   }
                 }
@@ -383,11 +341,7 @@ const Dashboard = () => {
         params: options,
         onSuccess: async (totalWellbeingPostsCreated) => {
           let userWellbeingPostsCount = 0;
-          for (
-            let wellbeingPostsIndex = 0;
-            wellbeingPostsIndex < totalWellbeingPostsCreated;
-            wellbeingPostsIndex++
-          ) {
+          for (let wellbeingPostsIndex = 0; wellbeingPostsIndex < totalWellbeingPostsCreated; wellbeingPostsIndex++) {
             options = {
               contractAddress: EightFit.address,
               functionName: "getWellbeingPost",
@@ -400,16 +354,12 @@ const Dashboard = () => {
             await contractProcessor.fetch({
               params: options,
               onSuccess: (wellbeingPost) => {
-                //check if the post belongs to the current user
-                if (
-                  wellbeingPost.userAddress.toLowerCase() ===
-                  account.toLowerCase()
-                ) {
-                  // increment wellbeing post count for the user
+                // Check if the post belongs to the current user
+                if (wellbeingPost.userAddress.toLowerCase() === account.toLowerCase()) {
                   userWellbeingPostsCount++;
-                  // if 5 or more strength training posts, award badge
+
+                  // If the user has 5 or more strength training posts, award badge
                   if (userWellbeingPostsCount >= 5) {
-                    // set badge to true
                     setWellbeingActivityBadge(true);
                   }
                 }
@@ -420,7 +370,7 @@ const Dashboard = () => {
       });
 
       // Badge 4 - Dreamer (reached weekly sleep goal)
-      // Get count for all sleep logs
+      // Fetch all the sleep posts for this user
       options = {
         contractAddress: EightFit.address,
         functionName: "getSleepPostsCount",
@@ -430,16 +380,11 @@ const Dashboard = () => {
       await contractProcessor.fetch({
         params: options,
         onSuccess: async (totalSleepPostsCreated) => {
-          // declare an array to store all of the sleep posts for one user
           let userSleepPostsArr = [];
           // variable to track total sleep for last 7 sleep posts
           let userTotalSleepInSevenPosts = 0;
-          // loop through each of the posts
-          for (
-            let sleepPostsIndex = 0;
-            sleepPostsIndex < totalSleepPostsCreated;
-            sleepPostsIndex++
-          ) {
+
+          for (let sleepPostsIndex = 0; sleepPostsIndex < totalSleepPostsCreated; sleepPostsIndex++) {
             // get the sleep post for the current loop
             options = {
               contractAddress: EightFit.address,
@@ -453,35 +398,24 @@ const Dashboard = () => {
             await contractProcessor.fetch({
               params: options,
               onSuccess: async (sleepPost) => {
-                // check if the post belongs to the current user
-                if (
-                  sleepPost.userAddress.toLowerCase() === account.toLowerCase()
-                ) {
-                  // push the post to the users sleep posts array
+                // Check if the post belongs to the current user
+                if (sleepPost.userAddress.toLowerCase() === account.toLowerCase()) {
                   userSleepPostsArr.push(sleepPost);
                 }
               },
             });
           }
 
-          // if the length of the sleepPostsArr <= 7 get the total
+          // If the length of the sleepPostsArr <= 7 get the total
           if (userSleepPostsArr.length <= 7) {
-            for (
-              let userSleepPostsIndex = 0;
-              userSleepPostsIndex < userSleepPostsArr.length;
-              userSleepPostsIndex++
-            ) {
+            for (let userSleepPostsIndex = 0; userSleepPostsIndex < userSleepPostsArr.length; userSleepPostsIndex++) {
               userTotalSleepInSevenPosts += parseInt(
                 userSleepPostsArr[userSleepPostsIndex].activityLength
               );
             }
           } else {
             let lastSevenSleepPosts = userSleepPostsArr.slice(-7);
-            for (
-              let userSleepPostsIndex = 0;
-              userSleepPostsIndex < lastSevenSleepPosts.length;
-              userSleepPostsIndex++
-            ) {
+            for (let userSleepPostsIndex = 0; userSleepPostsIndex < lastSevenSleepPosts.length; userSleepPostsIndex++) {
               userTotalSleepInSevenPosts += parseInt(
                 lastSevenSleepPosts[userSleepPostsIndex].activityLength
               );
@@ -499,7 +433,6 @@ const Dashboard = () => {
           await contractProcessor.fetch({
             params: options,
             onSuccess: async (userWeeklySleepGoal) => {
-              // set badge to true if sleep goal is met
               if (
                 userTotalSleepInSevenPosts >= userWeeklySleepGoal &&
                 userWeeklySleepGoal > 0
@@ -602,9 +535,7 @@ const Dashboard = () => {
               })}
             >
               <div className="progress-circle">
-                <strong>{stepsTaken}</strong> out of{" "}
-                <strong>{dailyStepsTakenGoal}</strong> steps taken today
-              </div>
+                <strong>{stepsTaken}</strong> out of <strong>{dailyStepsTakenGoal}</strong> steps taken today </div>
             </CircularProgressbarWithChildren>
           </div>
 
@@ -616,9 +547,7 @@ const Dashboard = () => {
               })}
             >
               <div className="progress-circle">
-                <strong>{cardioActivity}</strong> out of{" "}
-                <strong>{dailyCardioActivityGoal}</strong> minutes of cardio
-                today
+                <strong>{cardioActivity}</strong> out of <strong>{dailyCardioActivityGoal}</strong> minutes of cardio today
               </div>
             </CircularProgressbarWithChildren>
           </div>
@@ -631,9 +560,7 @@ const Dashboard = () => {
               })}
             >
               <div className="progress-circle">
-                <strong>{wellbeingActivity}</strong> out of{" "}
-                <strong>{dailyWellbeingGoal}</strong> minutes of wellbeing
-                activity today
+                <strong>{wellbeingActivity}</strong> out of <strong>{dailyWellbeingGoal}</strong> minutes of wellbeing activity today
               </div>
             </CircularProgressbarWithChildren>
           </div>

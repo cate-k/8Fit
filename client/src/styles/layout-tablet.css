@@ -59,11 +59,11 @@
   }
 
   /* Fitness */
-  .fitness-links .highlighted-btn {
+  .fitness-link .highlighted-btn {
     width: 80%;
   }
 
-  .fitness-links .highlighted-btn span {
+  .fitness-link .highlighted-btn span {
     margin: auto;
   }
 

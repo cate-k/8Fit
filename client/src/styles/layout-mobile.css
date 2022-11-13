@@ -249,10 +249,9 @@
 }
 
 /* Fitness */
-.fitness-links .highlighted-btn {
-  width: 18rem;
+.fitness-link .highlighted-btn {
   margin: auto;
-  margin-bottom: 5%;
+  margin-top: 10%;
 }
 
 /* Steps */
