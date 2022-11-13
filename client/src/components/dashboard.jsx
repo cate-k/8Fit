@@ -641,44 +641,77 @@ const Dashboard = () => {
 
         <h2>Achievements</h2>
 
-        <div
-          className={
-            "default-badge " + (cardioActivityBadge ? "earned-badge" : "")
-          }
-        >
-          CardioBadge
-        </div>
+        <div className="badge-container">
+          <div className={"badge-outer"}>
+            <img
+              className={
+                "badge-image " +
+                "default-badge " +
+                (cardioActivityBadge ? "earned-badge" : "")
+              }
+              src={require("../styles/images/badge1.png")}
+            ></img>
+            <div className="badge-text">
+              <div className="badge-title">Cardio Fanatic</div>
+              <div className="badge-desc">Logged 5 Cardio Activities</div>
+            </div>
+          </div>
 
-        <div
-          className={
-            "default-badge " + (strengthActivityBadge ? "earned-badge" : "")
-          }
-        >
-          StrengthBadge
-        </div>
+          <div className={"badge-outer"}>
+            <img
+              className={
+                "badge-image " +
+                "default-badge " +
+                (strengthActivityBadge ? "earned-badge" : "")
+              }
+              src={require("../styles/images/badge2.png")}
+            ></img>
+            <div className="badge-text">
+              <div className="badge-title">Gym Junkie</div>
+              <div className="badge-desc">Logged 5 Strength Activities</div>
+            </div>
+          </div>
 
-        <div
-          className={
-            "default-badge " + (wellbeingActivityBadge ? "earned-badge" : "")
-          }
-        >
-          WellbeingBadge
-        </div>
+          <div className={"badge-outer"}>
+            <img
+              className={
+                "badge-image " +
+                "default-badge " +
+                (wellbeingActivityBadge ? "earned-badge" : "")
+              }
+              src={require("../styles/images/badge3.png")}
+            ></img>
+            <div className="badge-text">
+              <div className="badge-title">Zen</div>
+              <div className="badge-desc">Logged 5 Wellbeing Activities</div>
+            </div>
+          </div>
 
-        <div
-          className={
-            "default-badge " + (weightTargetBadge ? "earned-badge" : "")
-          }
-        >
-          WeightBadge
-        </div>
+          <div className={"badge-outer"}>
+            <img
+              className={
+                "badge-image " +
+                "default-badge " +
+                (weightTargetBadge ? "earned-badge" : "")
+              }
+              src={require("../styles/images/badge5.png")}
+            ></img>
+            <div className="badge-text">
+              <div className="badge-title">Fine Diner</div>
+              <div className="badge-desc">Within 5% of Weight Goal</div>
+            </div>
+          </div>
 
-        <div
-          className={
-            "default-badge " + (sleepTargetBadge ? "earned-badge" : "")
-          }
-        >
-          SleepBadge
+          <div className={"badge-outer"}>
+            <img
+              className="badge-image"
+              src={require("../styles/images/badge4.png")}
+            ></img>
+            <div className="badge-text">
+              <div className="badge-title">Dreamer</div>
+              <div className="badge-desc">Reached Weekly Sleep Goal</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
