@@ -64,4 +64,9 @@
   .cardio .steps-info {
     margin-right: 15% !important;
   }
+
+  /* Badges */
+  .badge-outer {
+    width: 50%;
+  }
 }

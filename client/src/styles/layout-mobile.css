@@ -391,7 +391,8 @@
   margin-bottom: 3%;
 }
 
-/* Badge Classes */
+/* Badges */
+
 .default-badge {
   color: black;
   -webkit-filter: grayscale(100%);

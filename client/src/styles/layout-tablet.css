@@ -108,4 +108,20 @@
   .nutrition .edit-btn {
     margin-top: -1%;
   }
+
+  /* Badges */
+
+  .badge-text {
+    padding-left: 15px;
+    width: 65%;
+  }
+
+  .badge-image {
+    width: 30%;
+    padding: 10px;
+  }
+
+  .badge-title {
+    width: 100%;
+  }
 }
