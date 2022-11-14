@@ -48,12 +48,22 @@
     padding-right: 8%;
   }
 
+  /* Dashboard */
+  .progress-circle-container {
+    height: 85%;
+    width: 85%;
+  }
+
+  .progress-circle {
+    font-size: 1.8rem;
+  }
+
   /* Fitness */
-  .fitness-links .highlighted-btn {
+  .fitness-link .highlighted-btn {
     width: 80%;
   }
 
-  .fitness-links .highlighted-btn span {
+  .fitness-link .highlighted-btn span {
     margin: auto;
   }
 
@@ -97,5 +107,21 @@
 
   .nutrition .edit-btn {
     margin-top: -1%;
+  }
+
+  /* Badges */
+
+  .badge-text {
+    padding-left: 15px;
+    width: 65%;
+  }
+
+  .badge-image {
+    width: 30%;
+    padding: 10px;
+  }
+
+  .badge-title {
+    width: 100%;
   }
 }

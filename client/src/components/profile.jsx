@@ -94,16 +94,38 @@ const Profile = () => {
       // Fetch the user's weight
       options = {
         contractAddress: Storage.address,
-        functionName: "getWeight",
+        functionName: "getWeightCountCount",
         abi: Storage.abi,
         params: { userAddress: account },
       };
 
       await contractProcessor.fetch({
         params: options,
-        onSuccess: async (weight) => {
-          if (weight !== "") {
-            setWeight(weight);
+        onSuccess: async (weightLogCount) => {
+          for (
+            let weightLogIndex = 0;
+            weightLogIndex < weightLogCount;
+            weightLogIndex++
+          ) {
+            options = {
+              contractAddress: Storage.address,
+              functionName: "getWeight",
+              abi: Storage.abi,
+              params: {
+                userAddress: account,
+                index: weightLogIndex,
+              },
+            };
+
+            await contractProcessor.fetch({
+              params: options,
+              onSuccess: (weightLog) => {
+                // Display the user's current weight
+                if (weightLogIndex === weightLogCount - 1) {
+                  setWeight(weightLog);
+                }
+              },
+            });
           }
         },
       });
@@ -308,16 +330,22 @@ const Profile = () => {
           <p className="profile-info">{displayName}</p>
 
           <p className="profile-heading">Age</p>
-          <p className="profile-info">{parseInt(BigNumber.from(age).toHexString())}</p>
+          <p className="profile-info">
+            {parseInt(BigNumber.from(age).toHexString())}
+          </p>
 
           <p className="profile-heading">Gender</p>
           <p className="profile-info">{gender}</p>
 
           <p className="profile-heading">Height (in cm)</p>
-          <p className="profile-info">{parseInt(BigNumber.from(height).toHexString())}</p>
+          <p className="profile-info">
+            {parseInt(BigNumber.from(height).toHexString())}
+          </p>
 
           <p className="profile-heading">Weight (in kg)</p>
-          <p className="profile-info">{parseInt(BigNumber.from(weight).toHexString())}</p>
+          <p className="profile-info">
+            {parseInt(BigNumber.from(weight).toHexString())}
+          </p>
 
           <button className="edit-btn" onClick={editProfileDetails}>
             Edit Profile Details

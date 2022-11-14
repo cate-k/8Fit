@@ -13,8 +13,14 @@
     margin-top: 30%;
   }
 
+  /* Dashboard */
+  .progress-circle-container {
+    height: 60%;
+    width: 60%;
+  }
+
   /* Fitness */
-  .fitness-links .highlighted-btn {
+  .fitness-link .highlighted-btn {
     width: 60%;
   }
 
@@ -57,5 +63,10 @@
   /* Wellbeing */
   .cardio .steps-info {
     margin-right: 15% !important;
+  }
+
+  /* Badges */
+  .badge-outer {
+    width: 50%;
   }
 }
